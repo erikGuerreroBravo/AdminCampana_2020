@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="bs-container" style="min-height:960px;">
+        <section class="content-header">
+            <h1>
+                Curso
+                <small>(Agregar)</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"> <i class="fa fa-dashboard"></i> Inicio </a></li>
+                <li> <a href="#">curso</a></li>
+                <li class="active"> Docente </li>
+            </ol>
+        </section>
+        <br />
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h5 class="box-title">
+                            <label class="text-success emailtitleletter">
+                                <i class="text-success fa fa-graduation-cap"></i>
+                                Octavio Vargas Soto
+                            </label>&nbsp;
+
+                        </h5>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>Cursos:&nbsp;&nbsp;</label>
+                                    @*//@Html.TextBoxFor(model => model.StrDescripcion, new { @class = "form-control input-sm", placeholder = "Agrega un Curso", id = "StrDescripcion", required = "", patern = "^[a-záéíóúñA-ZÁÉÍÓÚÑ ]+$" })
+                                        @Html.ValidationMessageFor(model => model.StrDescripcion, "", new { @class = "text-danger" })*@
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Guardar" class="btn btn-success" id="btnEnviar" />
+                                    @*<a href="@Url.Action("Registro","Persona")" class="btn btn-info">Regresar</a>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+}

@@ -6,6 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using AdminCampana_2020.App_Start;
 using AdminCampana_2020.Controllers;
+using AdminCampana_2020.Infraestructure;
 using NLog;
 
 namespace AdminCampana_2020
@@ -18,11 +19,14 @@ namespace AdminCampana_2020
         {
             Log.Info("Starting up...");
             AreaRegistration.RegisterAllAreas();
+            UnityConfig.RegisterComponents();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            AutomaperWebProfile.Run();
+            System.Web.Optimization.BundleTable.EnableOptimizations = true;
             Log.Info("Routes and bundles registered");
             Log.Info("Started");
+            
         }
 
         protected void Application_End()
@@ -64,6 +68,7 @@ namespace AdminCampana_2020
             using (Controller controller = new ErrorController())
             {
                 ((IController)controller).Execute(new RequestContext(new HttpContextWrapper(httpContext), routeData));
+                
             }
         }
     }

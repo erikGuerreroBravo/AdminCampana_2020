@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4ab9e88926544afabd1302caa0aa2e41" Name="Diagram1">
+        <EntityTypeShape EntityType="RC2020Model.Direccion" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RC2020Model.Persona" Width="2.125" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RC2020Model.Telefono" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="RC2020Model.FK_Persona_Direccion" ManuallyRouted="false" />
+        <AssociationConnector Association="RC2020Model.FK_Persona_Telefono" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RC2020Model.Colonia" Width="2" PointX="0.5" PointY="1.375" />
+        <AssociationConnector Association="RC2020Model.FK_Direccion_Colonia1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

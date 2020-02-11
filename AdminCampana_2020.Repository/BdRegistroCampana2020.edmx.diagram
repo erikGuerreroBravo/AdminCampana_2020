@@ -12,6 +12,12 @@
         <AssociationConnector Association="RC2020Model.FK_Persona_Telefono" ManuallyRouted="false" />
         <EntityTypeShape EntityType="RC2020Model.Colonia" Width="2" PointX="0.5" PointY="1.375" />
         <AssociationConnector Association="RC2020Model.FK_Direccion_Colonia1" />
+        <EntityTypeShape EntityType="RC2020Model.Estrategia" Width="1.5" PointX="3.5" PointY="8.75" />
+        <EntityTypeShape EntityType="RC2020Model.Seccion" Width="1.5" PointX="0.75" PointY="5.875" />
+        <EntityTypeShape EntityType="RC2020Model.Zona" Width="1.5" PointX="5.375" PointY="5.875" />
+        <AssociationConnector Association="RC2020Model.FK_Direccion_Seccion" />
+        <AssociationConnector Association="RC2020Model.FK_Direccion_Zona" />
+        <AssociationConnector Association="RC2020Model.FK_Persona_Estrategia" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -13,5 +13,7 @@ namespace AdminCampana_2020.ViewModels
         public string StrNumeroExterior { get; set; }
         public string StrObservacion { get; set; }
         public ColoniaVM ColoniaVM { get; set; }
+        public SeccionVM SeccionVM { get; set; }
+        public ZonaVM ZonaVM { get; set; }
     }
 }

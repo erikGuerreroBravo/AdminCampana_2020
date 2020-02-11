@@ -81,6 +81,9 @@
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
     <Compile Include="DireccionRepository.cs" />
+    <Compile Include="Estrategia.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
     <Compile Include="Infraestructure\BaseRepository.cs" />
     <Compile Include="Infraestructure\Contract\IBaseRepository.cs" />
     <Compile Include="Infraestructure\Contract\IUnitOfWork.cs" />
@@ -90,10 +93,16 @@
     </Compile>
     <Compile Include="PersonaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seccion.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
     <Compile Include="Telefono.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
     <Compile Include="TelefonoRepository.cs" />
+    <Compile Include="Zona.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

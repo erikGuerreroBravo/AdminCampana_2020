@@ -29,5 +29,8 @@ namespace AdminCampana_2020.Repository
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Telefono> Telefono { get; set; }
         public virtual DbSet<Colonia> Colonia { get; set; }
+        public virtual DbSet<Estrategia> Estrategia { get; set; }
+        public virtual DbSet<Seccion> Seccion { get; set; }
+        public virtual DbSet<Zona> Zona { get; set; }
     }
 }

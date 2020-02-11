@@ -168,8 +168,11 @@
     </Compile>
     <Compile Include="ViewModels\ColoniaVM.cs" />
     <Compile Include="ViewModels\DireccionVM.cs" />
+    <Compile Include="ViewModels\EstrategiaVM.cs" />
     <Compile Include="ViewModels\PersonaVM.cs" />
+    <Compile Include="ViewModels\SeccionVM.cs" />
     <Compile Include="ViewModels\TelefonoVM.cs" />
+    <Compile Include="ViewModels\ZonaVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

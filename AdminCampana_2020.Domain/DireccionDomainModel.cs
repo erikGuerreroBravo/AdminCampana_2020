@@ -14,5 +14,7 @@ namespace AdminCampana_2020.Domain
         public string StrNumeroExterior { get; set; }
         public string StrObservacion { get; set; }
         public ColoniaDomainModel ColoniaDomainModel { get; set; }
+        public SeccionDomainModel SeccionDomainModel { get; set; }
+        public ZonaDomainModel ZonaDomainModel { get; set; }
     }
 }

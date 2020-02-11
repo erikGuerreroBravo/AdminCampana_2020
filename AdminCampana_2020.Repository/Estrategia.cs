@@ -12,20 +12,19 @@ namespace AdminCampana_2020.Repository
     using System;
     using System.Collections.Generic;
     
-    public partial class Persona
+    public partial class Estrategia
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Estrategia()
+        {
+            this.Persona = new HashSet<Persona>();
+        }
+    
         public int id { get; set; }
         public string strNombre { get; set; }
-        public string strApellidoPaterno { get; set; }
-        public string strApellidoMaterno { get; set; }
-        public string strEmail { get; set; }
-        public string strObservaciones { get; set; }
-        public Nullable<int> idTelefono { get; set; }
-        public Nullable<int> idDireccion { get; set; }
-        public Nullable<int> idEstrategia { get; set; }
+        public string strDescripcion { get; set; }
     
-        public virtual Direccion Direccion { get; set; }
-        public virtual Telefono Telefono { get; set; }
-        public virtual Estrategia Estrategia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Persona> Persona { get; set; }
     }
 }

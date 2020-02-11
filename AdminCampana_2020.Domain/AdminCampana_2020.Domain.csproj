@@ -43,9 +43,12 @@
   <ItemGroup>
     <Compile Include="ColoniaDomainModel.cs" />
     <Compile Include="DireccionDomainModel.cs" />
+    <Compile Include="EstrategiaDomainModel.cs" />
     <Compile Include="PersonaDomainModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeccionDomainModel.cs" />
     <Compile Include="TelefonoDomainModel.cs" />
+    <Compile Include="ZonaDomainModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

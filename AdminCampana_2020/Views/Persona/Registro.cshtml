@@ -75,12 +75,27 @@
                                 <div class="form-group">
                                     <label>Colonia:&nbsp;&nbsp;</label>
                                     @Html.DropDownList("IdColonia", null, new { @class = "form-control input-sm", id = "idColonia" })
-                                    
-
+                                </div>
+                                <div class="form-group">
+                                    <label>Número Interior:&nbsp;&nbsp;</label>
+                                    @Html.TextBoxFor(model => model.DireccionVM.StrNumeroInterior, new { @class = "form-control input-sm", placeholder = "La Dirección:Número Interior", id = "StrNumeroInterior" })
+                                    @Html.ValidationMessageFor(model => model.DireccionVM.StrNumeroInterior, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Número Exterior:&nbsp;&nbsp;</label>
+                                    @Html.TextBoxFor(model => model.DireccionVM.StrNumeroExterior, new { @class = "form-control input-sm", placeholder = "La Dirección:Número Exterior", id = "StrNumeroExterior" })
+                                    @Html.ValidationMessageFor(model => model.DireccionVM.StrNumeroExterior, "", new { @class = "text-danger" })
                                 </div>
 
+                                <div class="form-group">
+                                    <label>Sección:&nbsp;&nbsp;</label>
+                                    @Html.DropDownList("IdSeccion", null, new { @class = "form-control input-sm", id = "IdSeccion" })
+                                </div>
 
-
+                                <div class="form-group">
+                                    <label>Zona de Color:&nbsp;&nbsp;</label>
+                                    @Html.DropDownList("IdZona", null, new { @class = "form-control input-sm", id = "IdZona" })
+                                </div>
                                 <div class="form-group">
                                     <input type="submit" value="Guardar" class="btn btn-success" id="btnEnviar" />
                                     @*<a href="@Url.Action("Registro","Persona")" class="btn btn-info">Regresar</a>*@

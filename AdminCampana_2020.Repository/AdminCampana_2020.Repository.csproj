@@ -84,6 +84,7 @@
     <Compile Include="Estrategia.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
+    <Compile Include="EstrategiaRepository.cs" />
     <Compile Include="Infraestructure\BaseRepository.cs" />
     <Compile Include="Infraestructure\Contract\IBaseRepository.cs" />
     <Compile Include="Infraestructure\Contract\IUnitOfWork.cs" />

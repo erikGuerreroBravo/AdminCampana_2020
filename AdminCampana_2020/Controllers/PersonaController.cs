@@ -12,10 +12,15 @@ namespace AdminCampana_2020.Controllers
                 
         IPersonaBusiness IpersonaBusiness;
         IColoniaBusiness IcoloniaBusiness;
-        public PersonaController(IPersonaBusiness _IpersonaBusiness, IColoniaBusiness _IcoloniaBusiness)
+        ISeccionBusiness IseccionBusiness;
+        IZonaBusiness IzonaBusiness;
+        public PersonaController(IPersonaBusiness _IpersonaBusiness, IColoniaBusiness _IcoloniaBusiness,
+            ISeccionBusiness _IseccionBusiness, IZonaBusiness _IzonaBusiness)
         {
             IpersonaBusiness = _IpersonaBusiness;
             IcoloniaBusiness = _IcoloniaBusiness;
+            IseccionBusiness = _IseccionBusiness;
+            IzonaBusiness = _IzonaBusiness;
         }
 
         // GET: Persona
@@ -23,6 +28,8 @@ namespace AdminCampana_2020.Controllers
         public ActionResult Registro()
         {
             ViewBag.IdColonia = new SelectList(IcoloniaBusiness.GetColonias(), "id", "strAsentamiento");
+            ViewBag.IdSeccion = new SelectList(IseccionBusiness.GetSeccion(),"id","strNombre");
+            ViewBag.IdZona = new SelectList(IzonaBusiness.GetZonas(),"id","strNombre");
             return View();
         }
     }

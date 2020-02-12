@@ -151,6 +151,7 @@
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Views\Persona\Registro.cshtml" />
+    <Content Include="Views\Shared\_Estrategia.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

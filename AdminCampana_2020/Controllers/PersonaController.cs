@@ -40,9 +40,18 @@ namespace AdminCampana_2020.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Registro(PersonaVM personaVM)
+        public ActionResult Registro([Bind(Include ="")]PersonaVM personaVM)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+
+            }
+
+            ViewBag.IdColonia = new SelectList(IcoloniaBusiness.GetColonias(), "id", "strAsentamiento");
+            ViewBag.IdSeccion = new SelectList(IseccionBusiness.GetSeccion(), "id", "strNombre");
+            ViewBag.IdZona = new SelectList(IzonaBusiness.GetZonas(), "id", "strNombre");
+            ViewBag.IdEstrategias = new SelectList(IestrategiaBusiness.GetEstrategias(), "id", "strNombre");
+            return View("Registro");
         }
 
     }

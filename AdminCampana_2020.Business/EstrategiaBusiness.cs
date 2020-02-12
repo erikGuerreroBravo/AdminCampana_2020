@@ -24,7 +24,14 @@ namespace AdminCampana_2020.Business
 
         public List<EstrategiaDomainModel> GetEstrategias()
         {
-
+            List<EstrategiaDomainModel> estrategias = null;
+            estrategias = estrategiaRepository.GetAll().Select(p => new EstrategiaDomainModel
+            {
+                Id = p.id,
+                StrNombre = p.strNombre,
+                StrDescripcion = p.strDescripcion
+            }).ToList();
+            return estrategias;
         }
     }
 }

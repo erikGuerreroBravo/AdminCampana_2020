@@ -22,6 +22,7 @@ namespace AdminCampana_2020
             container.RegisterType<IColoniaBusiness, ColoniaBusiness>();
             container.RegisterType<ISeccionBusiness, SeccionBusiness>();
             container.RegisterType<IZonaBusiness, ZonaBusiness>();
+            container.RegisterType<IEstrategiaBusiness, EstrategiaBusiness>();
 
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             //DependencyResolver.SetResolver(new UnityDependencyResolver(container));

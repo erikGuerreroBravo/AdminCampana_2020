@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColoniaBusiness.cs" />
+    <Compile Include="Interface\IColoniaBusiness.cs" />
     <Compile Include="Interface\IPersonaBusiness.cs" />
     <Compile Include="PersonaBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

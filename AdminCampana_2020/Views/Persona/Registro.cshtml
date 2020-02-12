@@ -1,6 +1,7 @@
-﻿
+﻿@model AdminCampana_2020.ViewModels.PersonaVM
+
 @{
-    ViewBag.Title = "Registro";
+    //ViewBag.Title = "Registro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,13 +11,13 @@
     <div class="bs-container" style="min-height:960px;">
         <section class="content-header">
             <h1>
-                Curso
+                Datos Personales
                 <small>(Agregar)</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"> <i class="fa fa-dashboard"></i> Inicio </a></li>
-                <li> <a href="#">curso</a></li>
-                <li class="active"> Docente </li>
+                <li> <a href="#">captura</a></li>
+                <li class="active"> Datos Personales </li>
             </ol>
         </section>
         <br />
@@ -41,10 +42,45 @@
                         <div class="form-group">
                             <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label>Cursos:&nbsp;&nbsp;</label>
-                                    @*//@Html.TextBoxFor(model => model.StrDescripcion, new { @class = "form-control input-sm", placeholder = "Agrega un Curso", id = "StrDescripcion", required = "", patern = "^[a-záéíóúñA-ZÁÉÍÓÚÑ ]+$" })
-                                        @Html.ValidationMessageFor(model => model.StrDescripcion, "", new { @class = "text-danger" })*@
+                                    <label>Nombre:&nbsp;&nbsp;</label>
+                                    @Html.TextBoxFor(model => model.StrNombre, new { @class = "form-control input-sm", placeholder = "El Nombre", id = "StrNombre", required = "", patern = "^[a-záéíóúñA-ZÁÉÍÓÚÑ ]+$" })
+                                    @Html.ValidationMessageFor(model => model.StrNombre, "", new { @class = "text-danger" })
+
                                 </div>
+                                <div class="form-group">
+                                    <label>Apellido Paterno:&nbsp;&nbsp;</label>
+                                    @Html.TextBoxFor(model => model.StrApellidoPaterno, new { @class = "form-control input-sm", placeholder = "El Apellido Paterno", id = "StrApellidoPaterno", required = "", patern = "^[a-záéíóúñA-ZÁÉÍÓÚÑ ]+$" })
+                                    @Html.ValidationMessageFor(model => model.StrApellidoPaterno, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellido Materno:&nbsp;&nbsp;</label>
+                                    @Html.TextBoxFor(model => model.StrApellidoMaterno, new { @class = "form-control input-sm", placeholder = "El Apellido Materno", id = "StrApellidoMaterno", required = "", patern = "^[a-záéíóúñA-ZÁÉÍÓÚÑ ]+$" })
+                                    @Html.ValidationMessageFor(model => model.StrApellidoMaterno, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Email:&nbsp;&nbsp;</label>
+                                    @Html.TextBoxFor(model => model.StrEmail, new { @class = "form-control input-sm", placeholder = "Tu Correo", id = "StrEmail", required = "", patern = "^[a-záéíóúñA-ZÁÉÍÓÚÑ ]+$" })
+                                    @Html.ValidationMessageFor(model => model.StrEmail, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Telefono Celular:&nbsp;&nbsp;</label>
+                                    @Html.TextBoxFor(model => model.TelefonoVM.StrNumeroCelular, new { @class = "form-control input-sm", placeholder = "El Número Celular", id = "StrNumeroCelular", required = "", type = "number" })
+                                    @Html.ValidationMessageFor(model => model.TelefonoVM.StrNumeroCelular, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Calle:&nbsp;&nbsp;</label>
+                                    @Html.TextBoxFor(model => model.DireccionVM.StrCalle, new { @class = "form-control input-sm", placeholder = "La Dirección:Calle", id = "StrCalle" })
+                                    @Html.ValidationMessageFor(model => model.DireccionVM.StrCalle, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Colonia:&nbsp;&nbsp;</label>
+                                    @Html.DropDownList("IdColonia", null, new { @class = "form-control input-sm", id = "idColonia" })
+                                    
+
+                                </div>
+
+
+
                                 <div class="form-group">
                                     <input type="submit" value="Guardar" class="btn btn-success" id="btnEnviar" />
                                     @*<a href="@Url.Action("Registro","Persona")" class="btn btn-info">Regresar</a>*@

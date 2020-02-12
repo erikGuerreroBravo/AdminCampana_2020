@@ -25,7 +25,15 @@ namespace AdminCampana_2020.Infraestructure
             //entidad colonia
             CreateMap<ColoniaVM, ColoniaDomainModel>();
             CreateMap<ColoniaDomainModel, ColoniaVM>();
-
+            //seccion
+            CreateMap<SeccionVM, SeccionDomainModel>();
+            CreateMap<SeccionDomainModel, SeccionVM>();
+            //zona
+            CreateMap<ZonaVM, ZonaDomainModel>();
+            CreateMap<ZonaDomainModel, ZonaVM>();
+            //Estrategia
+            CreateMap<EstrategiaVM, EstrategiaDomainModel>();
+            CreateMap<EstrategiaDomainModel, EstrategiaVM>();
 
         }
 

@@ -15,7 +15,7 @@ namespace AdminCampana_2020.App_Start
                 .Include("~/Content/css/icheck/green.min.css", new CssRewriteUrlTransformAbsolute())
                 .Include("~/Content/css/AdminLTE.css", new CssRewriteUrlTransformAbsolute())
                 //.Include("~/Content/css/skins/skin-blue.css")
-                .Include("~/Content/css/skins/.skin-green-light.css")
+                //.Include("~/Content/css/skins/.skin-green-light.css")
                 .Include("~/Content/css/skins/skin-green.css")
                 );
 

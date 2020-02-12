@@ -11,16 +11,18 @@ namespace AdminCampana_2020.Controllers
     {
                 
         IPersonaBusiness IpersonaBusiness;
-        public PersonaController(IPersonaBusiness _IpersonaBusiness)
+        IColoniaBusiness IcoloniaBusiness;
+        public PersonaController(IPersonaBusiness _IpersonaBusiness, IColoniaBusiness _IcoloniaBusiness)
         {
             IpersonaBusiness = _IpersonaBusiness;
-            
+            IcoloniaBusiness = _IcoloniaBusiness;
         }
 
         // GET: Persona
         [HttpGet]
         public ActionResult Registro()
         {
+            ViewBag.IdColonia = new SelectList(IcoloniaBusiness.GetColonias(), "id", "strAsentamiento");
             return View();
         }
     }

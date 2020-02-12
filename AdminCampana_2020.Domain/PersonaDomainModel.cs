@@ -16,5 +16,6 @@ namespace AdminCampana_2020.Domain
         public string StrObservaciones { get; set; }
         public DireccionDomainModel DireccionDomainModel { get; set; }
         public TelefonoDomainModel TelefonoDomainModel { get; set; }
+        public EstrategiaDomainModel EstrategiaDomainModel { get; set; }
     }
 }

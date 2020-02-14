@@ -1,4 +1,5 @@
 ﻿using AdminCampana_2020.Business.Interface;
+using AdminCampana_2020.Domain;
 using AdminCampana_2020.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -61,7 +62,35 @@ namespace AdminCampana_2020.Controllers
 
             if (ModelState.IsValid)
             {
-                
+
+                EstrategiaDomainModel EstrategiDM = new EstrategiaDomainModel();
+                DireccionDomainModel direccionDM = new DireccionDomainModel();
+
+                SeccionDomainModel seccionDM = new SeccionDomainModel();
+                ColoniaDomainModel coloniaDM = new ColoniaDomainModel();
+                ZonaDomainModel zonaDM = new ZonaDomainModel();
+                PersonaDomainModel personaDM = new PersonaDomainModel();
+                TelefonoDomainModel telefonoDM = new TelefonoDomainModel();
+
+
+                AutoMapper.Mapper.Map(personaVM.EstrategiaVM,EstrategiDM);
+                AutoMapper.Mapper.Map(personaVM.DireccionVM,direccionDM);
+
+                AutoMapper.Mapper.Map(personaVM.DireccionVM.SeccionVM,seccionDM);
+                AutoMapper.Mapper.Map(personaVM.DireccionVM.ColoniaVM,coloniaDM);
+                AutoMapper.Mapper.Map(personaVM.DireccionVM.ZonaVM,zonaDM);
+                AutoMapper.Mapper.Map(personaVM.TelefonoVM,telefonoDM);
+
+                AutoMapper.Mapper.Map(personaVM,personaDM);
+
+                personaDM.DireccionDomainModel = direccionDM;
+                personaDM.EstrategiaDomainModel = EstrategiDM;
+                personaDM.DireccionDomainModel.SeccionDomainModel = seccionDM;
+                personaDM.DireccionDomainModel.ColoniaDomainModel = coloniaDM;
+                personaDM.DireccionDomainModel.ZonaDomainModel = zonaDM;
+                personaDM.TelefonoDomainModel = telefonoDM;
+
+                IpersonaBusiness.AddUpdatePersonal(personaDM);
             }
 
             ViewBag.IdColonia = new SelectList(IcoloniaBusiness.GetColonias(), "id", "strAsentamiento");

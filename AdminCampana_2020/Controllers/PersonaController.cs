@@ -100,5 +100,23 @@ namespace AdminCampana_2020.Controllers
             return View("Registro");
         }
 
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Registros()
+        {
+            List<PersonaDomainModel> personasDM = IpersonaBusiness.GetAllPersonas();
+            List<PersonaVM> personasVM = new List<PersonaVM>();
+            AutoMapper.Mapper.Map(personasDM, personasVM);
+            return View(personasVM);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public JsonResult Consultar()
+        {
+           return Json(IpersonaBusiness.GetAllPersonas(),JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

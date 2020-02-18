@@ -1,0 +1,63 @@
+﻿@model List<AdminCampana_2020.ViewModels.PersonaVM>
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    WebGrid webGrid = new WebGrid(Model, rowsPerPage: 5, canPage: true, canSort: true);
+}
+
+<div class="bs-container" style="min-height:960px;">
+    <section class="content-header">
+        <h1>
+            Datos Personales
+            <small>(Consultar)</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"> <i class="fa fa-dashboard"></i> Inicio </a></li>
+            <li> <a href="#">consultar</a></li>
+            <li class="active"> Datos Personales </li>
+        </ol>
+    </section>
+    <br />
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h5 class="box-title">
+                        <label class="text-success emailtitleletter">
+                            <i class="text-success fa fa-graduation-cap"></i>
+                            Octavio Vargas Soto
+                        </label>&nbsp;
+
+                    </h5>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    @webGrid.GetHtml(
+           tableStyle:"table table-responsive table-bordered",
+           headerStyle: "alert alert-success",
+           alternatingRowStyle: "alert alert-primary",
+           selectedRowStyle: "alert alert-dark",
+           rowStyle: "alert alert-default",
+           footerStyle: "Grid-Footer",
+           mode: WebGridPagerModes.All,
+           columns: new[] {
+                   //webGrid.Column("Id","Identificador"),
+                   webGrid.Column("StrNombre","Nombre"),
+                   webGrid.Column("StrApellidoPaterno","Apellido Paterno"),
+                   webGrid.Column("StrApellidoMaterno","Apellido Materno"),
+                   webGrid.Column("Acción",format:@<text><a href="" class="btn btn-sm btn-danger"
+                                                            onclick="DeleteME('@item.Id')">Borrar</a></text>)
+                        })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

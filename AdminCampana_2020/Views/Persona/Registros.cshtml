@@ -49,14 +49,44 @@
                    webGrid.Column("StrNombre","Nombre"),
                    webGrid.Column("StrApellidoPaterno","Apellido Paterno"),
                    webGrid.Column("StrApellidoMaterno","Apellido Materno"),
-                   webGrid.Column("Acción",format:@<text><a href="" class="btn btn-sm btn-danger"
-                                                            onclick="DeleteME('@item.Id')">Borrar</a></text>)
-                        })
+                   webGrid.Column("Editar",format:@<text><a href="" class="btn btn-sm btn-primary"
+                                                            onclick="Editar('@item.Id')">Editar</a></text>),
+                                   webGrid.Column("Eliminar",format:@<text><a href="" class="btn btn-sm btn-danger"
+                                                                              onclick="DeleteME('@item.Id')">Borrar</a></text>)
+
+
+                                                     })
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+    <script>
+
+    $(document).ready(function () {
+
+
+        function Editar(Id) {
+            alert(Id);
+        };
+
+        //$('#btnEditar').click(function ()
+        //{
+            
+
+        //    let url = "/Personal/GetSemblanzaEdit?_idPersonal=" + idPersonal;
+
+        //    $('#myModalBodyDiv1').load(url, function ()
+        //    {
+        //        $('#modalSemblanza').modal('show');
+        //    });
+        //});
+
+    });
+    </script>
 
 
 

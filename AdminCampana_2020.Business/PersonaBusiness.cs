@@ -92,6 +92,7 @@ namespace AdminCampana_2020.Business
             List<PersonaDomainModel> personas = null;
             personas = personaRepository.GetAll().Select(p => new PersonaDomainModel
             {
+                Id = p.id,
                 StrNombre = p.strNombre,
                 StrApellidoPaterno = p.strApellidoPaterno,
                 StrApellidoMaterno = p.strApellidoMaterno,
@@ -102,6 +103,26 @@ namespace AdminCampana_2020.Business
         }
 
 
+        public PersonaDomainModel GetPersonaById(int id)
+        {
+            Persona persona = personaRepository.SingleOrDefault(p => p.id == id);
+            if (persona != null)
+            {
+                PersonaDomainModel personaDM = new PersonaDomainModel();
+                personaDM.Id = persona.id;
+                personaDM.StrNombre = persona.strNombre;
+                personaDM.StrApellidoPaterno = persona.strApellidoPaterno;
+                personaDM.StrApellidoMaterno = persona.strApellidoMaterno;
+                personaDM.StrEmail = persona.strEmail;
+                return personaDM;
+            }
+            else
+            {
+                return null;
+            }
+
+
+        }
 
     }
 }

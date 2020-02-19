@@ -87,5 +87,21 @@ namespace AdminCampana_2020.Business
             return resultado;
         }
 
+        public List<PersonaDomainModel> GetAllPersonas()
+        {
+            List<PersonaDomainModel> personas = null;
+            personas = personaRepository.GetAll().Select(p => new PersonaDomainModel
+            {
+                StrNombre = p.strNombre,
+                StrApellidoPaterno = p.strApellidoPaterno,
+                StrApellidoMaterno = p.strApellidoMaterno,
+                StrEmail = p.strEmail,
+                
+            }).OrderByDescending(p=>p.StrNombre).ToList<PersonaDomainModel>();
+            return personas;
+        }
+
+
+
     }
 }

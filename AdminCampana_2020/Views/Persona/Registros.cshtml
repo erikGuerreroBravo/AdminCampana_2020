@@ -5,6 +5,7 @@
     WebGrid webGrid = new WebGrid(Model, rowsPerPage: 5, canPage: true, canSort: true);
 }
 
+<link rel=StyleSheet href="~/Content/css/table-responsive.css" type="text/css" media=screen>
 <div class="bs-container" style="min-height:960px;">
     <section class="content-header">
         <h1>
@@ -27,7 +28,6 @@
                             <i class="text-success fa fa-graduation-cap"></i>
                             Octavio Vargas Soto
                         </label>&nbsp;
-
                     </h5>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -35,9 +35,9 @@
                         </button>
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body ">
                     @webGrid.GetHtml(
-           tableStyle:"table table-responsive table-bordered",
+           tableStyle:"table",
            headerStyle: "alert alert-success",
            alternatingRowStyle: "alert alert-primary",
            selectedRowStyle: "alert alert-dark",
@@ -49,10 +49,12 @@
                    webGrid.Column("StrNombre","Nombre"),
                    webGrid.Column("StrApellidoPaterno","Apellido Paterno"),
                    webGrid.Column("StrApellidoMaterno","Apellido Materno"),
-                   webGrid.Column("Editar",format:@<text><a href="/Persona/Editar?_id=@item.Id" class="btn btn-sm btn-primary"
+
+                   webGrid.Column("Editar",format:@<text><a href="/Persona/Editar?_id=@item.Id" class="btn btn-sm  btn-new-edit btn-info"
                                                             >Editar</a></text>),
-                                                   webGrid.Column("Eliminar",format:@<text><a href="" class="btn btn-sm btn-danger"
+                                                   webGrid.Column("Eliminar",format:@<text><a href="" class="btn btn-sm btn-new-delete btn-danger"
                                                                                               onclick="DeleteME('@item.Id')">Borrar</a></text>)
+
 
 
                                                                                                   })

@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Afiliado.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Auditoria.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
     <Compile Include="BdRegistroCampana2020.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

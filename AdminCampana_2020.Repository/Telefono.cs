@@ -18,6 +18,7 @@ namespace AdminCampana_2020.Repository
         public Telefono()
         {
             this.Persona = new HashSet<Persona>();
+            this.Afiliado = new HashSet<Afiliado>();
         }
     
         public int id { get; set; }
@@ -27,5 +28,7 @@ namespace AdminCampana_2020.Repository
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Persona> Persona { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Afiliado> Afiliado { get; set; }
     }
 }

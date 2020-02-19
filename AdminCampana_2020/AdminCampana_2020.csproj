@@ -402,6 +402,7 @@
     <Content Include="Views\Shared\_Estrategia.cshtml" />
     <Content Include="Views\Persona\Registros.cshtml" />
     <Content Include="Views\Persona\Editar.cshtml" />
+    <Content Include="Views\Graficas\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -411,6 +412,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Controllers\GraficasController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Infraestructure\AutomaperWebProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

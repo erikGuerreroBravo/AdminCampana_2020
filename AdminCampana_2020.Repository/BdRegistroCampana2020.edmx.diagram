@@ -7,7 +7,7 @@
       <Diagram DiagramId="4ab9e88926544afabd1302caa0aa2e41" Name="Diagram1" ZoomLevel="75">
         <EntityTypeShape EntityType="RC2020Model.Direccion" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RC2020Model.Persona" Width="2.125" PointX="6.375" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RC2020Model.Telefono" Width="1.5" PointX="2.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RC2020Model.Telefono" Width="1.5" PointX="2.125" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="RC2020Model.FK_Persona_Direccion" ManuallyRouted="false" />
         <AssociationConnector Association="RC2020Model.FK_Persona_Telefono" ManuallyRouted="false" />
         <EntityTypeShape EntityType="RC2020Model.Colonia" Width="2" PointX="0.5" PointY="1.375" />

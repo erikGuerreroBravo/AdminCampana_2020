@@ -12,5 +12,6 @@ namespace AdminCampana_2020.Business.Interface
         string AddUpdatePersonal(PersonaDomainModel personaDM);
         List<PersonaDomainModel> GetAllPersonas();
         PersonaDomainModel GetPersonaById(int id);
+        string UpdatePersonal(PersonaDomainModel personaDM);
     }
 }

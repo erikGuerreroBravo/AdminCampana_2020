@@ -135,6 +135,14 @@ namespace AdminCampana_2020.Controllers
             return RedirectToAction("InternalServerError","Error");
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Editar([Bind(Include ="StrNombre,StrApellidoPaterno,StrApellidoMaterno,TelefonoVM")]PersonaVM personaVM)
+        {
+            return View();
+        }
+
+
 
     }
 }

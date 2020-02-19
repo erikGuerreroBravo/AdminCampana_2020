@@ -87,6 +87,30 @@ namespace AdminCampana_2020.Business
             return resultado;
         }
 
+
+        public string UpdatePersonal(PersonaDomainModel personaDM)
+        {
+            string resultado = string.Empty;
+            if (personaDM != null)
+            {
+                Persona persona = personaRepository.SingleOrDefault(p => p.id == personaDM.Id);
+
+                if (persona != null)
+                {
+                    persona.strNombre = personaDM.StrNombre;
+                    persona.strApellidoPaterno = personaDM.StrApellidoPaterno;
+                    persona.strApellidoMaterno = personaDM.StrApellidoMaterno;
+                    persona.strEmail = personaDM.StrEmail;
+                    persona.Telefono = new Telefono();
+                    persona.Telefono.strNumeroCelular = personaDM.TelefonoDomainModel.StrNumeroCelular;
+                    personaRepository.Update(persona);
+                    resultado = "Se Actualizo correctamente";
+                }
+            }
+            return resultado;
+        }
+
+
         public List<PersonaDomainModel> GetAllPersonas()
         {
             List<PersonaDomainModel> personas = null;

@@ -114,6 +114,10 @@ namespace AdminCampana_2020.Business
                 personaDM.StrApellidoPaterno = persona.strApellidoPaterno;
                 personaDM.StrApellidoMaterno = persona.strApellidoMaterno;
                 personaDM.StrEmail = persona.strEmail;
+
+                TelefonoDomainModel telefonoDM = new TelefonoDomainModel();
+                telefonoDM.StrNumeroCelular = persona.Telefono.strNumeroCelular;
+                personaDM.TelefonoDomainModel = telefonoDM;
                 return personaDM;
             }
             else

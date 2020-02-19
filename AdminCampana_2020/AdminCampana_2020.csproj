@@ -401,7 +401,7 @@
     <Content Include="Views\Persona\Registro.cshtml" />
     <Content Include="Views\Shared\_Estrategia.cshtml" />
     <Content Include="Views\Persona\Registros.cshtml" />
-    <Content Include="Views\Persona\_Editar.cshtml" />
+    <Content Include="Views\Persona\Editar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

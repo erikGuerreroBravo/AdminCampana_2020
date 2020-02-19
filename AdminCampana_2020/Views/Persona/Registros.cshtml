@@ -49,8 +49,8 @@
                    webGrid.Column("StrNombre","Nombre"),
                    webGrid.Column("StrApellidoPaterno","Apellido Paterno"),
                    webGrid.Column("StrApellidoMaterno","Apellido Materno"),
-                   webGrid.Column("Editar",format:@<text><a href="" class="btn btn-sm btn-primary"
-                                                            onclick="Edicion('@item.Id');">Editar</a></text>),
+                   webGrid.Column("Editar",format:@<text><a href="/Persona/Editar?_id=@item.Id" class="btn btn-sm btn-primary"
+                                                            >Editar</a></text>),
                                                    webGrid.Column("Eliminar",format:@<text><a href="" class="btn btn-sm btn-danger"
                                                                                               onclick="DeleteME('@item.Id')">Borrar</a></text>)
 
@@ -63,33 +63,10 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalEdicion">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#3C8DBC;color:white;">
-                <a href="#" class="close" data-dismiss="modal">&times;</a>
-                <h5 class="modal-title"><label style="font-size:medium;">Semblanza</label></h5>
-            </div>
-            <div class="modal-body" id="myModalBodyDiv1">
-            </div>
-        </div>
-    </div>
-</div>
+
 <script src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js?v=1"></script>
 <script src="~/Content/js/plugins/bootstrap/bootstrap.min.js?v=1"></script>
-<script>
 
-    function Edicion(Id) {
-
-        let url = "/Persona/Editar?_id=" + Id;
-        $('#myModalBodyDiv1').load(url, function () {
-            $('#modalEdicion').modal('show');
-        });
-        //alert(Id);
-    }
-
-
-</script>
 
 
 

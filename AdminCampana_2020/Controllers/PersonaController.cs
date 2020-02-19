@@ -123,9 +123,16 @@ namespace AdminCampana_2020.Controllers
         public ActionResult Editar(int _id)
         {
             PersonaDomainModel personaDM= IpersonaBusiness.GetPersonaById(_id);
-            PersonaVM personaVM = new PersonaVM();
-            AutoMapper.Mapper.Map(personaDM,personaVM);
-            return PartialView("_Editar");
+            if (personaDM != null)
+            {
+                PersonaVM personaVM = new PersonaVM();
+                AutoMapper.Mapper.Map(personaDM, personaVM);
+                TelefonoVM telefonoVM = new TelefonoVM();
+                AutoMapper.Mapper.Map(personaDM.TelefonoDomainModel,telefonoVM);
+                personaVM.TelefonoVM = telefonoVM;
+                return View("Editar", personaVM);
+            }
+            return RedirectToAction("InternalServerError","Error");
         }
 
 

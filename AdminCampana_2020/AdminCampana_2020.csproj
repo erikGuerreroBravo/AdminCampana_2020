@@ -600,6 +600,10 @@
       <Project>{BB53D5DD-B661-4C85-992E-EF27DC23F0E5}</Project>
       <Name>AdminCampana_2020.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AdminCampana_2020.Encript\AdminCampana_2020.Encript.csproj">
+      <Project>{16486539-9151-41dd-b176-ae8e8225809a}</Project>
+      <Name>AdminCampana_2020.Encript</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AdminCampana_2020.Repository\AdminCampana_2020.Repository.csproj">
       <Project>{7CE8DD96-ECF2-4247-8CE3-4611FD05D4E2}</Project>
       <Name>AdminCampana_2020.Repository</Name>

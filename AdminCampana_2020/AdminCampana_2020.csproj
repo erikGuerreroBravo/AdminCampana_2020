@@ -448,6 +448,7 @@
   <ItemGroup>
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Helpers\ChallengeResult.cs" />
     <Compile Include="Infraestructure\AutomaperWebProfile.cs" />
@@ -592,6 +593,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdminCampana_2020.Business\AdminCampana_2020.Business.csproj">

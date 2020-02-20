@@ -34,9 +34,5 @@ namespace AdminCampana_2020.Repository
         public virtual DbSet<Zona> Zona { get; set; }
         public virtual DbSet<Afiliado> Afiliado { get; set; }
         public virtual DbSet<Auditoria> Auditoria { get; set; }
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
     }
 }

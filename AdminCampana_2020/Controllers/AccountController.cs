@@ -34,7 +34,9 @@ namespace AdminCampana_2020.Controllers
         {
             ActionResult result; //esto se debe inicializar
             string clave = Funciones.Encrypt(loginView.Password); //encryptamos el password
-            UsuarioDomainModel usuarioDM =  
+            UsuarioDomainModel usuarioDM = usuarioBusiness.ValidarLogin(loginView.Email, clave);
+
+
         }
 
 

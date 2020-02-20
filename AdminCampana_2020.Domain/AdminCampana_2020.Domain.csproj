@@ -46,9 +46,18 @@
     <Compile Include="EstrategiaDomainModel.cs" />
     <Compile Include="PersonaDomainModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolDomainModel.cs" />
     <Compile Include="SeccionDomainModel.cs" />
     <Compile Include="TelefonoDomainModel.cs" />
+    <Compile Include="UsuarioDomainModel.cs" />
+    <Compile Include="UsuarioRolDomainModel.cs" />
     <Compile Include="ZonaDomainModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AdminCampana_2020.Repository\AdminCampana_2020.Repository.csproj">
+      <Project>{7CE8DD96-ECF2-4247-8CE3-4611FD05D4E2}</Project>
+      <Name>AdminCampana_2020.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

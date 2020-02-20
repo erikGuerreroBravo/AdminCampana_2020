@@ -137,9 +137,19 @@ namespace AdminCampana_2020.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Editar([Bind(Include ="StrNombre,StrApellidoPaterno,StrApellidoMaterno,TelefonoVM")]PersonaVM personaVM)
+        public ActionResult Editar([Bind(Include = "Id,StrNombre,StrApellidoPaterno,StrApellidoMaterno,StrEMail,TelefonoVM")]PersonaVM personaVM)
         {
-            return View();
+            if (personaVM != null && ModelState.IsValid)
+            {
+                PersonaDomainModel personaDM = new PersonaDomainModel();
+                TelefonoDomainModel telefonoDM = new TelefonoDomainModel();
+                AutoMapper.Mapper.Map(personaVM.TelefonoVM,telefonoDM);
+                AutoMapper.Mapper.Map(personaVM,personaDM);
+                personaDM.TelefonoDomainModel = telefonoDM;
+                IpersonaBusiness.UpdatePersonal(personaDM);
+
+            }
+            return RedirectToAction("Registros", "Persona");
         }
 
 

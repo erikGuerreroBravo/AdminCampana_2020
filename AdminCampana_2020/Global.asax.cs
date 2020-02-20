@@ -24,6 +24,8 @@ namespace AdminCampana_2020
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutomaperWebProfile.Run();
             System.Web.Optimization.BundleTable.EnableOptimizations = true;
+            System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier =
+               System.Security.Claims.ClaimTypes.NameIdentifier;
             Log.Info("Routes and bundles registered");
             Log.Info("Started");
             

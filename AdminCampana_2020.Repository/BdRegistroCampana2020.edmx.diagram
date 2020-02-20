@@ -25,6 +25,11 @@
         <AssociationConnector Association="RC2020Model.FK_Afiliado_Telefono" />
         <AssociationConnector Association="RC2020Model.FK_Auditoria_Afiliado" />
         <AssociationConnector Association="RC2020Model.FK_Auditoria_Persona" />
+        <EntityTypeShape EntityType="RC2020Model.Rol" Width="1.5" PointX="7.375" PointY="10.375" />
+        <EntityTypeShape EntityType="RC2020Model.Usuario" Width="1.5" PointX="7.375" PointY="7" />
+        <EntityTypeShape EntityType="RC2020Model.Usuario_Rol" Width="1.5" PointX="9.625" PointY="7.25" />
+        <AssociationConnector Association="RC2020Model.FK_Usuario_Rol_Rol" />
+        <AssociationConnector Association="RC2020Model.FK_Usuario_Rol_Usuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

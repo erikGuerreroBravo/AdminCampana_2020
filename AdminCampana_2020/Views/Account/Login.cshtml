@@ -1,19 +1,19 @@
-﻿@model AdminCampana_2020.ViewModels.PersonaVM
+﻿@model AdminCampana_2020.ViewModels.LoginVM
 @{
-    ViewBag.Title = "Login";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Login", "Seguridad", FormMethod.Post))
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
     <div class="modal modal-default fade" id="modal-default">
         <div class="modal-dialog" id="modal-blur">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:#3C8DBC;color:white;">
+                <div class="modal-header" style="background-color:#00a65a;color:white;">
                     @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>*@
-                    <h4 class="modal-title">Login de Acceso</h4>
+                    <h4 class="modal-title">Login</h4>
                 </div>
                 <div class="modal-body">
                     <div class="login-box">
@@ -22,7 +22,7 @@
                                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 
                                     <div class="form-group has-feedback">
-                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control input-sm", @type = "text", @placeholder = "Nombre de Usuario" })
+                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control input-sm", @type = "text", @placeholder = "Email de Usuario" })
                                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                         @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger" })
                                     </div>
@@ -32,17 +32,6 @@
                                         @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-7">
-                                            @if (Model == null)
-                                            {
-                                                <p class="text-red"><strong>@ViewBag.Validar</strong></p>
-                                            }
-                                            @*<div class="checkbox icheck">
-                                                    <label>
-                                                        <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Recordarme
-                                                    </label>
-                                                </div>*@
-                                        </div>
                                         <!-- /.col -->
                                         <div class="col-xs-5">
                                             <button type="submit" class="btn btn-primary btn-block btn-flat" id="BtnIngresar">Igresar</button>
@@ -50,9 +39,9 @@
                                         <!-- /.col -->
                                     </div>
                                 </div>
-                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                    <img src="~/Imagenes/escudo_uttt.jpg" alt="Escudo" width="150" height="145" class="responsive-img" />
-                                </div>
+                                @*<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                        <img src="~/Imagenes/escudo_uttt.jpg" alt="Escudo" width="150" height="145" class="responsive-img" />
+                                    </div>*@
                             </div>
                             <div class="row">
                                 <div class="col-xs-10">
@@ -83,4 +72,25 @@
     </div>
 }
 
+<script src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
+<script src="~/Content/js/plugins/bootstrap/bootstrap.min.js"></script>
+<script>
+    $(window).on('load', function () {
+        $("#modal-default").modal({ backdrop: 'static', keyboard: false });
+    });
 
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' /* optional */
+        });
+    });
+
+    $(document).ready(function () {
+
+        $('#modal-default').addClass('back');
+        $('#modal-blur').addClass('blur');
+
+    });
+</script>

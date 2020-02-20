@@ -103,6 +103,7 @@
     <Compile Include="Rol.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
+    <Compile Include="RolRepository.cs" />
     <Compile Include="Seccion.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
@@ -114,6 +115,8 @@
     <Compile Include="Usuario.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
+    <Compile Include="UsuarioRepository.cs" />
+    <Compile Include="UsuarioRol.cs" />
     <Compile Include="Usuario_Rol.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>

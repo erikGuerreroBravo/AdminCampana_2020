@@ -1,0 +1,86 @@
+﻿@model AdminCampana_2020.ViewModels.PersonaVM
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Login", "Seguridad", FormMethod.Post))
+{
+    <div class="modal modal-default fade" id="modal-default">
+        <div class="modal-dialog" id="modal-blur">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#3C8DBC;color:white;">
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>*@
+                    <h4 class="modal-title">Login de Acceso</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="login-box">
+                        <div class="login-box-body">
+                            <div class="row">
+                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+
+                                    <div class="form-group has-feedback">
+                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control input-sm", @type = "text", @placeholder = "Nombre de Usuario" })
+                                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                        @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        @Html.PasswordFor(model => model.Password, new { @class = "form-control input-sm", @placeholder = "Password" })
+                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                        @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            @if (Model == null)
+                                            {
+                                                <p class="text-red"><strong>@ViewBag.Validar</strong></p>
+                                            }
+                                            @*<div class="checkbox icheck">
+                                                    <label>
+                                                        <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Recordarme
+                                                    </label>
+                                                </div>*@
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-xs-5">
+                                            <button type="submit" class="btn btn-primary btn-block btn-flat" id="BtnIngresar">Igresar</button>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                </div>
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <img src="~/Imagenes/escudo_uttt.jpg" alt="Escudo" width="150" height="145" class="responsive-img" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-10">
+                                    <div class="social-auth-links text-center">
+
+                                        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
+                                            <i class="fa fa-facebook"></i> Inicia sesión con
+                                            Facebook
+                                        </a>
+                                        <a href="#" class="btn btn-block btn-social btn-google btn-flat">
+                                            <i class="fa fa-google-plus"></i>Inicia sesión con
+                                            Google+
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- /.social-auth-links -->
+                            <a href="#">Olvide mi password</a><br>
+                            <a href="register.html" class="text-center">Registra tus datos aqui.</a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+

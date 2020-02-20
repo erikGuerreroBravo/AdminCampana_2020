@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AdminCampana_2020.Domain;
+using AdminCampana_2020.Repository;
 using AdminCampana_2020.ViewModels;
 using AutoMapper;
 
@@ -34,6 +35,12 @@ namespace AdminCampana_2020.Infraestructure
             //Estrategia
             CreateMap<EstrategiaVM, EstrategiaDomainModel>();
             CreateMap<EstrategiaDomainModel, EstrategiaVM>();
+            
+            //Usuario
+            
+            //Roles
+
+            //UsuarioRoles
 
         }
 

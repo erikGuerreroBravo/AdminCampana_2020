@@ -25,6 +25,13 @@
         <AssociationConnector Association="RC2020Model.FK_Afiliado_Telefono" />
         <AssociationConnector Association="RC2020Model.FK_Auditoria_Afiliado" />
         <AssociationConnector Association="RC2020Model.FK_Auditoria_Persona" />
+        <EntityTypeShape EntityType="RC2020Model.AspNetRoles" Width="1.5" PointX="7.375" PointY="8.5" />
+        <EntityTypeShape EntityType="RC2020Model.AspNetUserClaims" Width="1.5" PointX="11.875" PointY="7" />
+        <EntityTypeShape EntityType="RC2020Model.AspNetUserLogins" Width="1.5" PointX="11.875" PointY="9.75" />
+        <EntityTypeShape EntityType="RC2020Model.AspNetUsers" Width="1.5" PointX="9.625" PointY="7.375" />
+        <AssociationConnector Association="RC2020Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="RC2020Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="RC2020Model.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

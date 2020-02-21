@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-     
+      
     $('#btnEnviar').click(function (e)
     {
         var correoI = $('#Correo').val();

@@ -106,10 +106,14 @@ namespace AdminCampana_2020.Controllers
         [Authorize]
         public ActionResult Registros()
         {
-            List<PersonaDomainModel> personasDM = IpersonaBusiness.GetAllPersonas();
-            List<PersonaVM> personasVM = new List<PersonaVM>();
-            AutoMapper.Mapper.Map(personasDM, personasVM);
-            return View(personasVM);
+            if (User.Identity.IsAuthenticated)
+            {
+                List<PersonaDomainModel> personasDM = IpersonaBusiness.GetAllPersonas();
+                List<PersonaVM> personasVM = new List<PersonaVM>();
+                AutoMapper.Mapper.Map(personasDM, personasVM);
+                return View(personasVM);
+            }
+            return RedirectToAction("Login","Account");
         }
 
         [HttpGet]
@@ -124,21 +128,31 @@ namespace AdminCampana_2020.Controllers
         [Authorize]
         public ActionResult Editar(int _id)
         {
-            PersonaDomainModel personaDM= IpersonaBusiness.GetPersonaById(_id);
-            if (personaDM != null)
+
+
+            if (User.Identity.IsAuthenticated)
             {
-                PersonaVM personaVM = new PersonaVM();
-                AutoMapper.Mapper.Map(personaDM, personaVM);
-                TelefonoVM telefonoVM = new TelefonoVM();
-                AutoMapper.Mapper.Map(personaDM.TelefonoDomainModel,telefonoVM);
-                personaVM.TelefonoVM = telefonoVM;
-                return View("Editar", personaVM);
+                PersonaDomainModel personaDM = IpersonaBusiness.GetPersonaById(_id);
+                if (personaDM != null)
+                {
+                    PersonaVM personaVM = new PersonaVM();
+                    AutoMapper.Mapper.Map(personaDM, personaVM);
+                    TelefonoVM telefonoVM = new TelefonoVM();
+                    AutoMapper.Mapper.Map(personaDM.TelefonoDomainModel, telefonoVM);
+                    personaVM.TelefonoVM = telefonoVM;
+                    return View("Editar", personaVM);
+                }
+                else
+                {
+                    return RedirectToAction("InternalServerError", "Error");
+                }
             }
-            return RedirectToAction("InternalServerError","Error");
+            return RedirectToAction("Login","Account");
         }
 
         [HttpPost]
         [AllowAnonymous]
+        [Authorize]
         public ActionResult Editar([Bind(Include = "Id,StrNombre,StrApellidoPaterno,StrApellidoMaterno,StrEMail,TelefonoVM")]PersonaVM personaVM)
         {
             if (personaVM != null && ModelState.IsValid)

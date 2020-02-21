@@ -35,12 +35,16 @@ namespace AdminCampana_2020.Infraestructure
             //Estrategia
             CreateMap<EstrategiaVM, EstrategiaDomainModel>();
             CreateMap<EstrategiaDomainModel, EstrategiaVM>();
-            
-            //Usuario
-            
-            //Roles
 
+            //Usuario
+            CreateMap<UsuarioVM, UsuarioDomainModel>();
+            CreateMap<UsuarioDomainModel, UsuarioVM>();
+            //Roles
+            CreateMap<RolVM, RolDomainModel>();
+            CreateMap<RolDomainModel, RolVM>();
             //UsuarioRoles
+            CreateMap<UsuarioRolVM, UsuarioRolDomainModel>();
+            CreateMap<UsuarioRolDomainModel, UsuarioRolVM>();
 
         }
 

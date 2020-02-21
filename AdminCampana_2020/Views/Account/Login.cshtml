@@ -6,6 +6,7 @@
 
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
     <div class="modal modal-default fade" id="modal-default">
         <div class="modal-dialog" id="modal-blur">
             <div class="modal-content">

@@ -29,10 +29,12 @@ namespace AdminCampana_2020.Business
                 Usuario usuario = usuarioRepository.SingleOrDefault(p => p.Email == email && p.Clave == password);
                 if (usuario != null)
                 {
+                    usuarioDM = new UsuarioDomainModel();
                     usuarioDM.Id = usuario.Id;
                     usuarioDM.Nombres = usuario.Nombres;
                     usuarioDM.Apellidos = usuario.Apellidos;
                     usuarioDM.Clave = usuario.Clave;
+                    usuarioDM.Email = usuario.Email;
                     usuarioDM.ProviderKey = usuario.ProviderKey;
                     usuarioDM.ProviderName = usuario.ProviderName;
                     List<UsuarioRolDomainModel> rolesDM = new List<UsuarioRolDomainModel>();

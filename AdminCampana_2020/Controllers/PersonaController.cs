@@ -33,16 +33,16 @@ namespace AdminCampana_2020.Controllers
         public ActionResult Registro()
         {
             ViewBag.IdColonia = new SelectList(IcoloniaBusiness.GetColonias(), "id", "strAsentamiento");
-            ViewBag.IdSeccion = new SelectList(IseccionBusiness.GetSeccion(),"id","strNombre");
-            ViewBag.IdZona = new SelectList(IzonaBusiness.GetZonas(),"id","strNombre");
-            ViewBag.IdEstrategias = new SelectList(IestrategiaBusiness.GetEstrategias(),"id","strNombre");
+            ViewBag.IdSeccion = new SelectList(IseccionBusiness.GetSeccion(), "id", "strNombre");
+            ViewBag.IdZona = new SelectList(IzonaBusiness.GetZonas(), "id", "strNombre");
+            ViewBag.IdEstrategias = new SelectList(IestrategiaBusiness.GetEstrategias(), "id", "strNombre");
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Registro([Bind(Include = "StrNombre,StrApellidoPaterno,StrApellidoMaterno,StrEmail,TelefonoVM,StrNumeroCelular,DireccionVM")]PersonaVM personaVM,string IdColonia,string IdSeccion,string IdZona,string IdEstrategias)
-        {  
+        public ActionResult Registro([Bind(Include = "StrNombre,StrApellidoPaterno,StrApellidoMaterno,StrEmail,TelefonoVM,StrNumeroCelular,DireccionVM")]PersonaVM personaVM, string IdColonia, string IdSeccion, string IdZona, string IdEstrategias)
+        {
             var coloniaId = int.Parse(IdColonia);
             var seccionId = int.Parse(IdSeccion);
             var zonaId = int.Parse(IdZona);
@@ -73,15 +73,15 @@ namespace AdminCampana_2020.Controllers
                 TelefonoDomainModel telefonoDM = new TelefonoDomainModel();
 
 
-                AutoMapper.Mapper.Map(personaVM.EstrategiaVM,EstrategiDM);
-                AutoMapper.Mapper.Map(personaVM.DireccionVM,direccionDM);
+                AutoMapper.Mapper.Map(personaVM.EstrategiaVM, EstrategiDM);
+                AutoMapper.Mapper.Map(personaVM.DireccionVM, direccionDM);
 
-                AutoMapper.Mapper.Map(personaVM.DireccionVM.SeccionVM,seccionDM);
-                AutoMapper.Mapper.Map(personaVM.DireccionVM.ColoniaVM,coloniaDM);
-                AutoMapper.Mapper.Map(personaVM.DireccionVM.ZonaVM,zonaDM);
-                AutoMapper.Mapper.Map(personaVM.TelefonoVM,telefonoDM);
+                AutoMapper.Mapper.Map(personaVM.DireccionVM.SeccionVM, seccionDM);
+                AutoMapper.Mapper.Map(personaVM.DireccionVM.ColoniaVM, coloniaDM);
+                AutoMapper.Mapper.Map(personaVM.DireccionVM.ZonaVM, zonaDM);
+                AutoMapper.Mapper.Map(personaVM.TelefonoVM, telefonoDM);
 
-                AutoMapper.Mapper.Map(personaVM,personaDM);
+                AutoMapper.Mapper.Map(personaVM, personaDM);
 
                 personaDM.DireccionDomainModel = direccionDM;
                 personaDM.EstrategiaDomainModel = EstrategiDM;
@@ -103,6 +103,7 @@ namespace AdminCampana_2020.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [Authorize]
         public ActionResult Registros()
         {
             List<PersonaDomainModel> personasDM = IpersonaBusiness.GetAllPersonas();
@@ -115,11 +116,12 @@ namespace AdminCampana_2020.Controllers
         [AllowAnonymous]
         public JsonResult Consultar()
         {
-           return Json(IpersonaBusiness.GetAllPersonas(),JsonRequestBehavior.AllowGet);
+            return Json(IpersonaBusiness.GetAllPersonas(), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         [AllowAnonymous]
+        [Authorize]
         public ActionResult Editar(int _id)
         {
             PersonaDomainModel personaDM= IpersonaBusiness.GetPersonaById(_id);

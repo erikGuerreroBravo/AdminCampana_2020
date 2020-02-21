@@ -34,7 +34,7 @@
   .col-12 {width: 100%;}
     [class*="col-"] {
         width: 100%;
-        font-size: 21px !important;
+        font-size: 13px !important;
     }
 }
 
@@ -55,12 +55,12 @@
 
 .btn-new-edit{
     color: white !important;
-    font-size: 15px;
+    font-size: 13px;
     background-color: midnightblue;
 }
 
 .btn-new-delete {
     color: white !important;
-    font-size: 15px;
+    font-size: 13px;
     background-color: red;
 }

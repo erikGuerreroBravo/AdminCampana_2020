@@ -11,6 +11,7 @@ using System.Security.Claims;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using AdminCampana_2020.Helpers;
+using System.Threading.Tasks;
 
 namespace AdminCampana_2020.Controllers
 {
@@ -64,7 +65,7 @@ namespace AdminCampana_2020.Controllers
             ///podemos crear un tipo de claims personalizado
             Claims.Add(new Claim("FullName", $"{userDM.Nombres} {userDM.Apellidos}"));
             ///estos claims se almacenan en la cookie para identificar al usuario y sus atributos o permisos
-            
+
             //ahora establñecemos los claims con los roles del usuario
             if (userDM.UsuarioRolesDM != null && userDM.UsuarioRolesDM.Any())
             {
@@ -111,9 +112,79 @@ namespace AdminCampana_2020.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLinkLoginCallback", "Account", new { ReturnUrl = returnUrl }), UserID);
         }
 
+        public async Task<ActionResult> ExternalLinkLoginCallback()
+        {
 
-        
+            try
+            {
+
+                ActionResult Result;
+                // Obtener la información devuelta por el proveedor externo
+                var LoginInfo =
+                    await HttpContext.GetOwinContext().
+                    Authentication.GetExternalLoginInfoAsync(
+                        ChallengeResult.XsrfKey, User.Identity.GetUserId());
+
+                if (LoginInfo == null)
+                {
+                    Result = Content("No se pudo realizar la autenticación con el proveedor externo");
+                    return RedirectToAction("NotFound", "Error");
+                }
+                else
+                {
+                    // El usuario ha sido autenticado por el proveedor externo!
+                    // Obtener la llave del proveedor de autenticación.
+                    // Esta llave es específica del usuario.
+                    string ProviderKey = LoginInfo.Login.ProviderKey;
+                    // Obtener el nombre del proveedor de autenticación.
+                    string ProviderName = LoginInfo.Login.LoginProvider;
+                    // Enlazar los datos de la cuenta externa con la cuenta de usuario local. 
+                    int IdUsuario = int.Parse(Funciones.GetClaimInfo(ClaimTypes.NameIdentifier));
+                    ///aqui actualizo al usuario para el provider key 
+
+                    return RedirectToAction("Registros", "Persona");
+                }
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = ex.Message;
+                return RedirectToAction("InternalServerError", "Error");
+            }
+
+        }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ExternalLogin(string provider, string returnUrl)
+        {
+            // Solicitamos un Redirect al proveedor externo.
+            return new
+                ChallengeResult(provider, Url.Action(
+                    "ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+        }
+
+        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
+        {
+            ActionResult Result;
+
+            // Obtener la información devuelta por el proveedor externo
+            var LoginInfo = await HttpContext.GetOwinContext().
+                Authentication.GetExternalLoginInfoAsync();
+
+            if (LoginInfo == null)
+                // No se pudo autenticar.
+                Result = RedirectToAction("Login", "Account");
+            else
+            {
+                // El usuario ha sido autenticado por el proveedor externo!
+                // Obtener la llave del proveedor que identifica al usuario.
+                string ProviderKey = LoginInfo.Login.ProviderKey;
+                ///consulto al usuario por el concepto de providerKey
+                ///Result = SigInUser(User, false, returnUrl);
+                Result = RedirectToAction("Login","Account");
+            }
+            return Result;
+        }
     }
 }

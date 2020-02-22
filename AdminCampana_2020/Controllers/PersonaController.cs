@@ -168,7 +168,6 @@ namespace AdminCampana_2020.Controllers
             return RedirectToAction("Registros", "Persona");
         }
 
-
-
+       
     }
 }

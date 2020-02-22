@@ -6,190 +6,214 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="bs-container" style="min-height:960px;">
+        <section class="content-header">
+            <h1>
+                Dashboard
+                <small>(Admin)</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"> <i class="fa fa-dashboard"></i> Inicio </a></li>
+                <li> <a href="#">Analisis</a></li>
+                <li class="active"> Graficas </li>
+            </ol>
+        </section>
+        <br />
         <div class="row">
-            <section class="content-header">
-                <h1>
-                    Bienvenido:@ViewBag.Usuario
-                    <small>(Consultar)</small>
-                </h1>
-                @*<ol class="breadcrumb">
-                    <li><a href="#"> <i class="fa fa-dashboard"></i> Inicio </a></li>
-                    <li> <a href="#">Consultar</a></li>
-                    <li class="active">Gráfica </li>
-                </ol>*@
-            </section>
-            <br />
-        </div>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            Grafica de Pastel
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="pie" style="width:50px"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                           Visualización de Datos
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                           <table class="table table-responsive">
-                               <thead>
-                                   <tr>
-                                    <th>Sección #32</th>
-                                    <th>Sección #33</th>
-                                    <th>Sección #34</th>
-                                    <th>Sección #35</th>
-                                    <th>Sección #36</th>
-                                    <th>Sección #37</th>
-                                   </tr>
-                               </thead>
-                               <tbody>
-                                   <tr>
-                                       <td style="background-color:rgba(255, 99, 132, 0.5);text-align:center">45</td>
-                                       <td style="background-color:rgba(54, 162, 235, 0.5);text-align:center">23</td>
-                                       <td style="background-color:rgba(255, 206, 86, 0.5);text-align:center">65</td>
-                                       <td style="background-color:rgba(75, 192, 192, 0.5);text-align:center">76</td>
-                                       <td style="background-color:rgba(153, 102, 255, 0.5);text-align:center">67</td>
-                                       <td style="background-color:rgba(255, 159, 64, 0.5);text-align:center">54</td>
-                                   </tr>
-                               </tbody>
-                           </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h5 class="box-title">
+                            <label class="text-success emailtitleletter">
+                                <i class="text-success"></i>
+                                Bienvenido: @ViewBag.Usuario
+                            </label>&nbsp;
 
-        <div class="row">
-            <div class="col-lg-4 ">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            Grafica Lineal
+                        </h5>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="panel-body">
-                        <canvas id="line" style="width:50px"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            Controles de Filtrado
-                        </div>
-                    </div>
-                    <div class="panel-body">
+                    <div class="box-body">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label>Sección 30</label>
-                                    <input type="text" class="form-control" id="30" />
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="panel-title">
+                                                Grafica de Pastel
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <canvas id="pie" style="width:50px"></canvas>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <label>Sección 31</label>
-                                    <input type="text" class="form-control" id="31"/>
-                                </div>
-                                <div class="col-lg-4">
-                                    <label>Sección 32</label>
-                                    <input type="text" class="form-control" id="32"/>
+                                <div class="col-lg-8">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="panel-title">
+                                                Visualización de Datos
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <table class="table table-responsive">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sección #32</th>
+                                                            <th>Sección #33</th>
+                                                            <th>Sección #34</th>
+                                                            <th>Sección #35</th>
+                                                            <th>Sección #36</th>
+                                                            <th>Sección #37</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="background-color:rgba(255, 99, 132, 0.5);text-align:center">45</td>
+                                                            <td style="background-color:rgba(54, 162, 235, 0.5);text-align:center">23</td>
+                                                            <td style="background-color:rgba(255, 206, 86, 0.5);text-align:center">65</td>
+                                                            <td style="background-color:rgba(75, 192, 192, 0.5);text-align:center">76</td>
+                                                            <td style="background-color:rgba(153, 102, 255, 0.5);text-align:center">67</td>
+                                                            <td style="background-color:rgba(255, 159, 64, 0.5);text-align:center">54</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <label>Sección 33</label>
-                                    <input type="text" class="form-control" id="33"/>
-                                </div>
-                                <div class="col-lg-4">
-                                    <label>Sección 34</label>
-                                    <input type="text" class="form-control" id="34"/>
-                                </div>
-                                <div class="col-lg-4">
-                                    <label>Sección 35</label>
-                                    <input type="text" class="form-control" id="35"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <input type="button" id="btnLine" value="Calcular" class="btn btn-sm btn-success" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            Grafica de Barras
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="bar" style="width:50px"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            Controles de Filtrado
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group">
                             <div class="row">
-                                <div class="col-lg-4">
-                                    <label>Sección 30</label>
-                                    <input type="text" class="form-control" id="36"/>
+                                <div class="col-lg-4 ">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="panel-title">
+                                                Grafica Lineal
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <canvas id="line" style="width:50px"></canvas>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <label>Sección 31</label>
-                                    <input type="text" class="form-control" id="37"/>
-                                </div>
-                                <div class="col-lg-4">
-                                    <label>Sección 32</label>
-                                    <input type="text" class="form-control" id="38"/>
+                                <div class="col-lg-8">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="panel-title">
+                                                Controles de Filtrado
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label>Sección 30</label>
+                                                        <input type="text" class="form-control" id="30" />
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>Sección 31</label>
+                                                        <input type="text" class="form-control" id="31" />
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>Sección 32</label>
+                                                        <input type="text" class="form-control" id="32" />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label>Sección 33</label>
+                                                        <input type="text" class="form-control" id="33" />
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>Sección 34</label>
+                                                        <input type="text" class="form-control" id="34" />
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>Sección 35</label>
+                                                        <input type="text" class="form-control" id="35" />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <input type="button" id="btnLine" value="Calcular" class="btn btn-sm btn-success" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label>Sección 33</label>
-                                    <input type="text" class="form-control" id="39"/>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="panel-title">
+                                                Grafica de Barras
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <canvas id="bar" style="width:50px"></canvas>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <label>Sección 34</label>
-                                    <input type="text" class="form-control" id="40"/>
-                                </div>
-                                <div class="col-lg-4">
-                                    <label>Sección 35</label>
-                                    <input type="text" class="form-control" id="41"/>
-                                </div>
-                            </div>         
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <input type="button" id="btnBar" value="Calcular" class="btn btn-sm btn-success"/>
+                                <div class="col-lg-8">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="panel-title">
+                                                Controles de Filtrado
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label>Sección 30</label>
+                                                        <input type="text" class="form-control" id="36" />
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>Sección 31</label>
+                                                        <input type="text" class="form-control" id="37" />
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>Sección 32</label>
+                                                        <input type="text" class="form-control" id="38" />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label>Sección 33</label>
+                                                        <input type="text" class="form-control" id="39" />
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>Sección 34</label>
+                                                        <input type="text" class="form-control" id="40" />
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>Sección 35</label>
+                                                        <input type="text" class="form-control" id="41" />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <input type="button" id="btnBar" value="Calcular" class="btn btn-sm btn-success" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>

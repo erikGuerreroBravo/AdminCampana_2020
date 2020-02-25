@@ -15,5 +15,11 @@ namespace AdminCampana_2020.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult NoScript()
+        {
+            return View();
+        }
     }
 }

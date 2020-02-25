@@ -4,7 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     WebGrid webGrid = new WebGrid(Model, rowsPerPage: 5, canPage: true, canSort: true);
 }
-
+<noscript>
+    <meta http-equiv="refresh" content="0;URL=@Url.Action("NoScript", "Error")" />
+</noscript>
 <link rel=StyleSheet href="~/Content/css/table-responsive.css?v=1" type="text/css" media=screen>
 <div class="bs-container" style="min-height:960px;">
     <section class="content-header">

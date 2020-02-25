@@ -112,46 +112,46 @@ namespace AdminCampana_2020.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLinkLoginCallback", "Account", new { ReturnUrl = returnUrl }), UserID);
         }
 
-        public async Task<ActionResult> ExternalLinkLoginCallback()
-        {
+        //public async Task<ActionResult> ExternalLinkLoginCallback()
+        //{
 
-            try
-            {
+        //    try
+        //    {
 
-                ActionResult Result;
-                // Obtener la información devuelta por el proveedor externo
-                var LoginInfo =
-                    await HttpContext.GetOwinContext().
-                    Authentication.GetExternalLoginInfoAsync(
-                        ChallengeResult.XsrfKey, User.Identity.GetUserId());
+        //        ActionResult Result;
+        //        // Obtener la información devuelta por el proveedor externo
+        //        var LoginInfo =
+        //            await HttpContext.GetOwinContext().
+        //            Authentication.GetExternalLoginInfoAsync(
+        //                ChallengeResult.XsrfKey, User.Identity.GetUserId());
 
-                if (LoginInfo == null)
-                {
-                    Result = Content("No se pudo realizar la autenticación con el proveedor externo");
-                    return RedirectToAction("NotFound", "Error");
-                }
-                else
-                {
-                    // El usuario ha sido autenticado por el proveedor externo!
-                    // Obtener la llave del proveedor de autenticación.
-                    // Esta llave es específica del usuario.
-                    string ProviderKey = LoginInfo.Login.ProviderKey;
-                    // Obtener el nombre del proveedor de autenticación.
-                    string ProviderName = LoginInfo.Login.LoginProvider;
-                    // Enlazar los datos de la cuenta externa con la cuenta de usuario local. 
-                    int IdUsuario = int.Parse(Funciones.GetClaimInfo(ClaimTypes.NameIdentifier));
-                    ///aqui actualizo al usuario para el provider key 
+        //        if (LoginInfo == null)
+        //        {
+        //            Result = Content("No se pudo realizar la autenticación con el proveedor externo");
+        //        }
+        //        else
+        //        {
+        //            // El usuario ha sido autenticado por el proveedor externo!
+        //            // Obtener la llave del proveedor de autenticación.
+        //            // Esta llave es específica del usuario.
+        //            string ProviderKey = LoginInfo.Login.ProviderKey;
+        //            // Obtener el nombre del proveedor de autenticación.
+        //            string ProviderName = LoginInfo.Login.LoginProvider;
+        //            // Enlazar los datos de la cuenta externa con la cuenta de usuario local. 
+        //            int IdUsuario = int.Parse(Funciones.GetClaimInfo(ClaimTypes.NameIdentifier));
 
-                    return RedirectToAction("Registros", "Persona");
-                }
-            }
-            catch (Exception ex)
-            {
-                string ErrorMessage = ex.Message;
-                return RedirectToAction("InternalServerError", "Error");
-            }
+        //            ///aqui actualizo al usuario para el provider key 
 
-        }
+        //            return RedirectToAction("Registros", "Persona");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string ErrorMessage = ex.Message;
+        //        return RedirectToAction("InternalServerError", "Error");
+        //    }
+
+        //}
 
 
         [HttpPost]

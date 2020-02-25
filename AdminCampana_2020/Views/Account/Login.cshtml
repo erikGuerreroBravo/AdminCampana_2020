@@ -7,6 +7,9 @@
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+    <noscript>
+        <meta http-equiv="refresh" content="0;URL=@Url.Action("NoScript", "Error")" />
+    </noscript>
     <div class="modal modal-default fade" id="modal-default">
         <div class="modal-dialog" id="modal-blur">
             <div class="modal-content">

@@ -29,7 +29,7 @@ namespace AdminCampana_2020.App_Start
                 DefaultAuthenticationTypes.ExternalCookie ///utilizamos una cookie externa    
             );
             ///utilizaremos una cookie externa para poder logearnos en nuestra aplicacion
-            app.UseFacebookAuthentication(appId: "473117726940272", appSecret: "73287401352f91d8a34b74ad35c68725");
+            app.UseFacebookAuthentication(appId: "176463290452727", appSecret: "9ba12df78212eea0b7944726fb34bb96");
             ///utilizaremos una cookie externa de microsoft account para logearnos
             app.UseMicrosoftAccountAuthentication(clientId: "some one", clientSecret: "some one");
             ///utilizamos una ccokie externa para logearnos con google

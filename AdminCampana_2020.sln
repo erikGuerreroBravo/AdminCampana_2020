@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminCampana_2020.Business"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminCampana_2020.Domain", "AdminCampana_2020.Domain\AdminCampana_2020.Domain.csproj", "{BB53D5DD-B661-4C85-992E-EF27DC23F0E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminCampana_2020.Encript", "AdminCampana_2020.Encript\AdminCampana_2020.Encript.csproj", "{16486539-9151-41DD-B176-AE8E8225809A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BB53D5DD-B661-4C85-992E-EF27DC23F0E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB53D5DD-B661-4C85-992E-EF27DC23F0E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB53D5DD-B661-4C85-992E-EF27DC23F0E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16486539-9151-41DD-B176-AE8E8225809A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16486539-9151-41DD-B176-AE8E8225809A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16486539-9151-41DD-B176-AE8E8225809A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16486539-9151-41DD-B176-AE8E8225809A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

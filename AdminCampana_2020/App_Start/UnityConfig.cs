@@ -18,6 +18,10 @@ namespace AdminCampana_2020
             // it is NOT necessary to register your controllers
 
             // e.g. container.RegisterType<ITestService, TestService>();
+            container.RegisterType<IUsuarioBusiness, UsuarioBusiness>();
+            container.RegisterType<IRolBusiness, RolBusiness>();
+            container.RegisterType<IUsuarioRolBusiness, UsuarioRolBusiness>();
+
             container.RegisterType<IPersonaBusiness, PersonaBusiness>();
             container.RegisterType<IColoniaBusiness, ColoniaBusiness>();
             container.RegisterType<ISeccionBusiness, SeccionBusiness>();

@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Afiliado.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Auditoria.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
     <Compile Include="BdRegistroCampana2020.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,6 +100,10 @@
     </Compile>
     <Compile Include="PersonaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rol.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RolRepository.cs" />
     <Compile Include="Seccion.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
@@ -102,6 +112,14 @@
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
     <Compile Include="TelefonoRepository.cs" />
+    <Compile Include="Usuario.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioRepository.cs" />
+    <Compile Include="UsuarioRol.cs" />
+    <Compile Include="Usuario_Rol.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
     <Compile Include="Zona.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>

@@ -87,11 +87,36 @@ namespace AdminCampana_2020.Business
             return resultado;
         }
 
+
+        public string UpdatePersonal(PersonaDomainModel personaDM)
+        {
+            string resultado = string.Empty;
+            if (personaDM != null)
+            {
+                Persona persona = personaRepository.SingleOrDefault(p => p.id == personaDM.Id);
+
+                if (persona != null)
+                {
+                    persona.strNombre = personaDM.StrNombre;
+                    persona.strApellidoPaterno = personaDM.StrApellidoPaterno;
+                    persona.strApellidoMaterno = personaDM.StrApellidoMaterno;
+                    persona.strEmail = personaDM.StrEmail;
+                    persona.Telefono = new Telefono();
+                    persona.Telefono.strNumeroCelular = personaDM.TelefonoDomainModel.StrNumeroCelular;
+                    personaRepository.Update(persona);
+                    resultado = "Se Actualizo correctamente";
+                }
+            }
+            return resultado;
+        }
+
+
         public List<PersonaDomainModel> GetAllPersonas()
         {
             List<PersonaDomainModel> personas = null;
             personas = personaRepository.GetAll().Select(p => new PersonaDomainModel
             {
+                Id = p.id,
                 StrNombre = p.strNombre,
                 StrApellidoPaterno = p.strApellidoPaterno,
                 StrApellidoMaterno = p.strApellidoMaterno,
@@ -102,6 +127,30 @@ namespace AdminCampana_2020.Business
         }
 
 
+        public PersonaDomainModel GetPersonaById(int id)
+        {
+            Persona persona = personaRepository.SingleOrDefault(p => p.id == id);
+            if (persona != null)
+            {
+                PersonaDomainModel personaDM = new PersonaDomainModel();
+                personaDM.Id = persona.id;
+                personaDM.StrNombre = persona.strNombre;
+                personaDM.StrApellidoPaterno = persona.strApellidoPaterno;
+                personaDM.StrApellidoMaterno = persona.strApellidoMaterno;
+                personaDM.StrEmail = persona.strEmail;
+
+                TelefonoDomainModel telefonoDM = new TelefonoDomainModel();
+                telefonoDM.StrNumeroCelular = persona.Telefono.strNumeroCelular;
+                personaDM.TelefonoDomainModel = telefonoDM;
+                return personaDM;
+            }
+            else
+            {
+                return null;
+            }
+
+
+        }
 
     }
 }

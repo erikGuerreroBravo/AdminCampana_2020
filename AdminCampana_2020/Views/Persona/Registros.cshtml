@@ -45,17 +45,19 @@
            footerStyle: "Grid-Footer",
            mode: WebGridPagerModes.All,
            columns: new[] {
-                   //webGrid.Column("Id","Identificador"),
+                   webGrid.Column("Id","Identificador"),
                    webGrid.Column("StrNombre","Nombre"),
                    webGrid.Column("StrApellidoPaterno","Apellido Paterno"),
                    webGrid.Column("StrApellidoMaterno","Apellido Materno"),
-                   webGrid.Column("Editar",format:@<text><a href="" class="btn btn-sm  btn-new-edit btn-info"
-                                                            onclick="Editar('@item.Id')" >Editar</a></text>),
-                                   webGrid.Column("Eliminar",format:@<text><a href="" class="btn btn-sm btn-new-delete btn-danger"
-                                                                              onclick="DeleteME('@item.Id')">Borrar</a></text>)
+
+                   webGrid.Column("Editar",format:@<text><a href="/Persona/Editar?_id=@item.Id" class="btn btn-sm  btn-new-edit btn-info"
+                                                            >Editar</a></text>),
+                                                   webGrid.Column("Eliminar",format:@<text><a href="" class="btn btn-sm btn-new-delete btn-danger"
+                                                                                              onclick="DeleteME('@item.Id')">Borrar</a></text>)
 
 
-                                                     })
+
+                                                                                                  })
 
                 </div>
             </div>
@@ -64,29 +66,9 @@
 </div>
 
 
-    <script>
+<script src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js?v=1"></script>
+<script src="~/Content/js/plugins/bootstrap/bootstrap.min.js?v=1"></script>
 
-    $(document).ready(function () {
-
-
-        function Editar(Id) {
-            alert(Id);
-        };
-
-        //$('#btnEditar').click(function ()
-        //{
-            
-
-        //    let url = "/Personal/GetSemblanzaEdit?_idPersonal=" + idPersonal;
-
-        //    $('#myModalBodyDiv1').load(url, function ()
-        //    {
-        //        $('#modalSemblanza').modal('show');
-        //    });
-        //});
-
-    });
-    </script>
 
 
 

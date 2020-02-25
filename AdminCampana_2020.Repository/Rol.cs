@@ -12,23 +12,18 @@ namespace AdminCampana_2020.Repository
     using System;
     using System.Collections.Generic;
     
-    public partial class Telefono
+    public partial class Rol
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Telefono()
+        public Rol()
         {
-            this.Persona = new HashSet<Persona>();
-            this.Afiliado = new HashSet<Afiliado>();
+            this.Usuario_Rol = new HashSet<Usuario_Rol>();
         }
     
-        public int id { get; set; }
-        public string strNumeroCelular { get; set; }
-        public string strNumeroHogar { get; set; }
-        public string strNumeroOtro { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Persona> Persona { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Afiliado> Afiliado { get; set; }
+        public virtual ICollection<Usuario_Rol> Usuario_Rol { get; set; }
     }
 }

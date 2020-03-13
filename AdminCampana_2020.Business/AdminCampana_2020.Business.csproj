@@ -51,6 +51,7 @@
     <Compile Include="Interface\IUsuarioBusiness.cs" />
     <Compile Include="Interface\IUsuarioRolBusiness.cs" />
     <Compile Include="Interface\IZonaBusiness.cs" />
+    <Compile Include="MetaBusiness.cs" />
     <Compile Include="PersonaBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolBusiness.cs" />

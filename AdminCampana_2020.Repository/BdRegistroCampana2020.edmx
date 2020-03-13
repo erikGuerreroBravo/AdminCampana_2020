@@ -19,6 +19,14 @@
           <Property Name="idDireccion" Type="int" />
           <Property Name="idTelefono" Type="int" />
         </EntityType>
+        <EntityType Name="Aliado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strNombre" Type="varchar" MaxLength="50" />
+          <Property Name="strDescripcion" Type="varchar" MaxLength="450" />
+        </EntityType>
         <EntityType Name="Auditoria">
           <Key>
             <PropertyRef Name="id" />
@@ -39,6 +47,7 @@
           <Property Name="strTipoDeAsentamiento" Type="varchar" MaxLength="50" />
           <Property Name="strAsentamiento" Type="varchar" MaxLength="50" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idSeccion" Type="int" />
         </EntityType>
         <EntityType Name="Direccion">
           <Key>
@@ -50,7 +59,6 @@
           <Property Name="strNumeroExterior" Type="varchar" MaxLength="20" />
           <Property Name="idColonia" Type="int" />
           <Property Name="strObservacion" Type="varchar(max)" />
-          <Property Name="idSeccion" Type="int" />
           <Property Name="idZona" Type="int" />
         </EntityType>
         <EntityType Name="Estrategia">
@@ -61,6 +69,14 @@
           <Property Name="strNombre" Type="varchar" MaxLength="50" />
           <Property Name="strDescripcion" Type="varchar" MaxLength="450" />
         </EntityType>
+        <EntityType Name="Meta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="meta" Type="int" />
+          <Property Name="idRol" Type="int" />
+        </EntityType>
         <EntityType Name="Persona">
           <Key>
             <PropertyRef Name="id" />
@@ -70,12 +86,12 @@
           <Property Name="strApellidoPaterno" Type="varchar" MaxLength="50" />
           <Property Name="strApellidoMaterno" Type="varchar" MaxLength="50" />
           <Property Name="strEmail" Type="varchar" MaxLength="50" />
-          <Property Name="strClaveElector" Type="varchar" MaxLength="22" />
-          <Property Name="strCurp" Type="varchar" MaxLength="22" />
           <Property Name="strObservaciones" Type="varchar(max)" />
           <Property Name="idTelefono" Type="int" />
           <Property Name="idDireccion" Type="int" />
           <Property Name="idEstrategia" Type="int" />
+          <Property Name="strClaveElector" Type="varchar" MaxLength="22" />
+          <Property Name="strCurp" Type="varchar" MaxLength="22" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -91,6 +107,16 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="strNombre" Type="varchar" MaxLength="50" />
           <Property Name="strDescripcion" Type="varchar" MaxLength="450" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Telefono">
           <Key>
@@ -193,10 +219,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Direccion_Colonia1">
-          <End Role="Colonia" Type="Self.Colonia" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK_Colonia_Seccion">
+          <End Role="Seccion" Type="Self.Seccion" Multiplicity="0..1" />
+          <End Role="Colonia" Type="Self.Colonia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seccion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Colonia">
+              <PropertyRef Name="idSeccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direccion_Colonia">
+          <End Role="Colonia" Type="Self.Colonia" Multiplicity="0..1" />
           <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Colonia">
@@ -204,20 +240,6 @@
             </Principal>
             <Dependent Role="Direccion">
               <PropertyRef Name="idColonia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Direccion_Seccion">
-          <End Role="Seccion" Type="Self.Seccion" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Seccion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Direccion">
-              <PropertyRef Name="idSeccion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -232,6 +254,18 @@
             </Principal>
             <Dependent Role="Direccion">
               <PropertyRef Name="idZona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Meta_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Meta" Type="Self.Meta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Meta">
+              <PropertyRef Name="idRol" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -303,13 +337,16 @@
         </Association>
         <EntityContainer Name="RC2020ModelStoreContainer">
           <EntitySet Name="Afiliado" EntityType="Self.Afiliado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Aliado" EntityType="Self.Aliado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Auditoria" EntityType="Self.Auditoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colonia" EntityType="Self.Colonia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estrategia" EntityType="Self.Estrategia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Meta" EntityType="Self.Meta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seccion" EntityType="Self.Seccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Telefono" EntityType="Self.Telefono" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario_Rol" EntityType="Self.Usuario_Rol" Schema="dbo" store:Type="Tables" />
@@ -334,17 +371,21 @@
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Auditoria" EntitySet="Auditoria" />
           </AssociationSet>
-          <AssociationSet Name="FK_Direccion_Colonia1" Association="Self.FK_Direccion_Colonia1">
-            <End Role="Colonia" EntitySet="Colonia" />
-            <End Role="Direccion" EntitySet="Direccion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Direccion_Seccion" Association="Self.FK_Direccion_Seccion">
+          <AssociationSet Name="FK_Colonia_Seccion" Association="Self.FK_Colonia_Seccion">
             <End Role="Seccion" EntitySet="Seccion" />
+            <End Role="Colonia" EntitySet="Colonia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Colonia" Association="Self.FK_Direccion_Colonia">
+            <End Role="Colonia" EntitySet="Colonia" />
             <End Role="Direccion" EntitySet="Direccion" />
           </AssociationSet>
           <AssociationSet Name="FK_Direccion_Zona" Association="Self.FK_Direccion_Zona">
             <End Role="Zona" EntitySet="Zona" />
             <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Meta_Rol" Association="Self.FK_Meta_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Meta" EntitySet="Meta" />
           </AssociationSet>
           <AssociationSet Name="FK_Persona_Direccion" Association="Self.FK_Persona_Direccion">
             <End Role="Direccion" EntitySet="Direccion" />
@@ -371,24 +412,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RC2020Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Direccion">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="strCalle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="strNumeroInterior" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="strNumeroExterior" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="idColonia" Type="Int32" />
-          <Property Name="strObservacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_Direccion" FromRole="Direccion" ToRole="Persona" />
-          <NavigationProperty Name="Colonia" Relationship="RC2020Model.FK_Direccion_Colonia1" FromRole="Direccion" ToRole="Colonia" />
-          <Property Name="idSeccion" Type="Int32" />
-          <Property Name="idZona" Type="Int32" />
-          <NavigationProperty Name="Seccion" Relationship="RC2020Model.FK_Direccion_Seccion" FromRole="Direccion" ToRole="Seccion" />
-          <NavigationProperty Name="Zona" Relationship="RC2020Model.FK_Direccion_Zona" FromRole="Direccion" ToRole="Zona" />
-          <NavigationProperty Name="Afiliado" Relationship="RC2020Model.FK_Afiliado_Direccion" FromRole="Direccion" ToRole="Afiliado" />
-        </EntityType>
         <EntityType Name="Persona">
           <Key>
             <PropertyRef Name="id" />
@@ -401,7 +424,6 @@
           <Property Name="strObservaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="idTelefono" Type="Int32" />
           <Property Name="idDireccion" Type="Int32" />
-          <NavigationProperty Name="Direccion" Relationship="Self.FK_Persona_Direccion" FromRole="Persona" ToRole="Direccion" />
           <NavigationProperty Name="Telefono" Relationship="Self.FK_Persona_Telefono" FromRole="Persona" ToRole="Telefono" />
           <Property Name="idEstrategia" Type="Int32" />
           <NavigationProperty Name="Estrategia" Relationship="RC2020Model.FK_Persona_Estrategia" FromRole="Persona" ToRole="Estrategia" />
@@ -409,6 +431,7 @@
           <Property Name="strCurp" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Afiliado" Relationship="RC2020Model.FK_Afiliado_Persona" FromRole="Persona" ToRole="Afiliado" />
           <NavigationProperty Name="Auditoria" Relationship="RC2020Model.FK_Auditoria_Persona" FromRole="Persona" ToRole="Auditoria" />
+          <NavigationProperty Name="Direccion" Relationship="RC2020Model.FK_Persona_Direccion" FromRole="Persona" ToRole="Direccion" />
         </EntityType>
         <EntityType Name="Telefono">
           <Key>
@@ -421,20 +444,6 @@
           <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_Telefono" FromRole="Telefono" ToRole="Persona" />
           <NavigationProperty Name="Afiliado" Relationship="RC2020Model.FK_Afiliado_Telefono" FromRole="Telefono" ToRole="Afiliado" />
         </EntityType>
-        <Association Name="FK_Persona_Direccion">
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Direccion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Persona">
-              <PropertyRef Name="idDireccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Persona_Telefono">
           <End Role="Telefono" Type="Self.Telefono" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -450,43 +459,22 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RC2020Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Direccion" EntityType="Self.Direccion" />
           <EntitySet Name="Persona" EntityType="Self.Persona" />
           <EntitySet Name="Telefono" EntityType="Self.Telefono" />
-          <AssociationSet Name="FK_Persona_Direccion" Association="Self.FK_Persona_Direccion">
-            <End Role="Direccion" EntitySet="Direccion" />
-            <End Role="Persona" EntitySet="Persona" />
-          </AssociationSet>
           <AssociationSet Name="FK_Persona_Telefono" Association="Self.FK_Persona_Telefono">
             <End Role="Telefono" EntitySet="Telefono" />
             <End Role="Persona" EntitySet="Persona" />
           </AssociationSet>
           <EntitySet Name="Colonia" EntityType="RC2020Model.Colonia" />
-          <AssociationSet Name="FK_Direccion_Colonia1" Association="RC2020Model.FK_Direccion_Colonia1">
-            <End Role="Colonia" EntitySet="Colonia" />
-            <End Role="Direccion" EntitySet="Direccion" />
-          </AssociationSet>
           <EntitySet Name="Estrategia" EntityType="RC2020Model.Estrategia" />
           <EntitySet Name="Seccion" EntityType="RC2020Model.Seccion" />
           <EntitySet Name="Zona" EntityType="RC2020Model.Zona" />
-          <AssociationSet Name="FK_Direccion_Seccion" Association="RC2020Model.FK_Direccion_Seccion">
-            <End Role="Seccion" EntitySet="Seccion" />
-            <End Role="Direccion" EntitySet="Direccion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Direccion_Zona" Association="RC2020Model.FK_Direccion_Zona">
-            <End Role="Zona" EntitySet="Zona" />
-            <End Role="Direccion" EntitySet="Direccion" />
-          </AssociationSet>
           <AssociationSet Name="FK_Persona_Estrategia" Association="RC2020Model.FK_Persona_Estrategia">
             <End Role="Estrategia" EntitySet="Estrategia" />
             <End Role="Persona" EntitySet="Persona" />
           </AssociationSet>
           <EntitySet Name="Afiliado" EntityType="RC2020Model.Afiliado" />
           <EntitySet Name="Auditoria" EntityType="RC2020Model.Auditoria" />
-          <AssociationSet Name="FK_Afiliado_Direccion" Association="RC2020Model.FK_Afiliado_Direccion">
-            <End Role="Direccion" EntitySet="Direccion" />
-            <End Role="Afiliado" EntitySet="Afiliado" />
-          </AssociationSet>
           <AssociationSet Name="FK_Afiliado_Persona" Association="RC2020Model.FK_Afiliado_Persona">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Afiliado" EntitySet="Afiliado" />
@@ -514,6 +502,34 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Usuario_Rol" EntitySet="Usuario_Rol" />
           </AssociationSet>
+          <EntitySet Name="Aliado" EntityType="RC2020Model.Aliado" />
+          <EntitySet Name="Meta" EntityType="RC2020Model.Meta" />
+          <EntitySet Name="sysdiagrams" EntityType="RC2020Model.sysdiagrams" />
+          <AssociationSet Name="FK_Meta_Rol" Association="RC2020Model.FK_Meta_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Meta" EntitySet="Meta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colonia_Seccion" Association="RC2020Model.FK_Colonia_Seccion">
+            <End Role="Seccion" EntitySet="Seccion" />
+            <End Role="Colonia" EntitySet="Colonia" />
+          </AssociationSet>
+          <EntitySet Name="Direccion" EntityType="RC2020Model.Direccion" />
+          <AssociationSet Name="FK_Afiliado_Direccion" Association="RC2020Model.FK_Afiliado_Direccion">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Afiliado" EntitySet="Afiliado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Colonia" Association="RC2020Model.FK_Direccion_Colonia">
+            <End Role="Colonia" EntitySet="Colonia" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Zona" Association="RC2020Model.FK_Direccion_Zona">
+            <End Role="Zona" EntitySet="Zona" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Direccion" Association="RC2020Model.FK_Persona_Direccion">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Colonia">
           <Key>
@@ -523,22 +539,10 @@
           <Property Name="strTipoDeAsentamiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="strAsentamiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Direccion" Relationship="RC2020Model.FK_Direccion_Colonia1" FromRole="Colonia" ToRole="Direccion" />
+          <Property Name="idSeccion" Type="Int32" />
+          <NavigationProperty Name="Seccion" Relationship="RC2020Model.FK_Colonia_Seccion" FromRole="Colonia" ToRole="Seccion" />
+          <NavigationProperty Name="Direccion" Relationship="RC2020Model.FK_Direccion_Colonia" FromRole="Colonia" ToRole="Direccion" />
         </EntityType>
-        <Association Name="FK_Direccion_Colonia1">
-          <End Type="RC2020Model.Colonia" Role="Colonia" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="RC2020Model.Direccion" Role="Direccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Colonia">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Direccion">
-              <PropertyRef Name="idColonia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Estrategia">
           <Key>
             <PropertyRef Name="id" />
@@ -555,7 +559,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="strNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="strDescripcion" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Direccion" Relationship="RC2020Model.FK_Direccion_Seccion" FromRole="Seccion" ToRole="Direccion" />
+          <NavigationProperty Name="Colonia" Relationship="RC2020Model.FK_Colonia_Seccion" FromRole="Seccion" ToRole="Colonia" />
         </EntityType>
         <EntityType Name="Zona">
           <Key>
@@ -566,34 +570,6 @@
           <Property Name="strDescripcion" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Direccion" Relationship="RC2020Model.FK_Direccion_Zona" FromRole="Zona" ToRole="Direccion" />
         </EntityType>
-        <Association Name="FK_Direccion_Seccion">
-          <End Type="RC2020Model.Seccion" Role="Seccion" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="RC2020Model.Direccion" Role="Direccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Seccion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Direccion">
-              <PropertyRef Name="idSeccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Direccion_Zona">
-          <End Type="RC2020Model.Zona" Role="Zona" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="RC2020Model.Direccion" Role="Direccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Zona">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Direccion">
-              <PropertyRef Name="idZona" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Persona_Estrategia">
           <End Type="RC2020Model.Estrategia" Role="Estrategia" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -621,10 +597,10 @@
           <Property Name="idPersona" Type="Int32" />
           <Property Name="idDireccion" Type="Int32" />
           <Property Name="idTelefono" Type="Int32" />
-          <NavigationProperty Name="Direccion" Relationship="RC2020Model.FK_Afiliado_Direccion" FromRole="Afiliado" ToRole="Direccion" />
           <NavigationProperty Name="Persona" Relationship="RC2020Model.FK_Afiliado_Persona" FromRole="Afiliado" ToRole="Persona" />
           <NavigationProperty Name="Telefono" Relationship="RC2020Model.FK_Afiliado_Telefono" FromRole="Afiliado" ToRole="Telefono" />
           <NavigationProperty Name="Auditoria" Relationship="RC2020Model.FK_Auditoria_Afiliado" FromRole="Afiliado" ToRole="Auditoria" />
+          <NavigationProperty Name="Direccion" Relationship="RC2020Model.FK_Afiliado_Direccion" FromRole="Afiliado" ToRole="Direccion" />
         </EntityType>
         <EntityType Name="Auditoria">
           <Key>
@@ -640,20 +616,6 @@
           <NavigationProperty Name="Afiliado" Relationship="RC2020Model.FK_Auditoria_Afiliado" FromRole="Auditoria" ToRole="Afiliado" />
           <NavigationProperty Name="Persona" Relationship="RC2020Model.FK_Auditoria_Persona" FromRole="Auditoria" ToRole="Persona" />
         </EntityType>
-        <Association Name="FK_Afiliado_Direccion">
-          <End Type="RC2020Model.Direccion" Role="Direccion" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="RC2020Model.Afiliado" Role="Afiliado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Direccion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Afiliado">
-              <PropertyRef Name="idDireccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Afiliado_Persona">
           <End Type="RC2020Model.Persona" Role="Persona" Multiplicity="0..1" />
           <End Type="RC2020Model.Afiliado" Role="Afiliado" Multiplicity="*" />
@@ -711,6 +673,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Usuario_Rol" Relationship="RC2020Model.FK_Usuario_Rol_Rol" FromRole="Rol" ToRole="Usuario_Rol" />
+          <NavigationProperty Name="Meta" Relationship="RC2020Model.FK_Meta_Rol" FromRole="Rol" ToRole="Meta" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -759,26 +722,133 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Aliado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strDescripcion" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Meta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="meta1" Type="Int32" />
+          <Property Name="idRol" Type="Int32" />
+          <NavigationProperty Name="Rol" Relationship="RC2020Model.FK_Meta_Rol" FromRole="Meta" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Meta_Rol">
+          <End Type="RC2020Model.Rol" Role="Rol" Multiplicity="0..1" />
+          <End Type="RC2020Model.Meta" Role="Meta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Meta">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colonia_Seccion">
+          <End Type="RC2020Model.Seccion" Role="Seccion" Multiplicity="0..1" />
+          <End Type="RC2020Model.Colonia" Role="Colonia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seccion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Colonia">
+              <PropertyRef Name="idSeccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strCalle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strNumeroInterior" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="strNumeroExterior" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idColonia" Type="Int32" />
+          <Property Name="strObservacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idZona" Type="Int32" />
+          <NavigationProperty Name="Afiliado" Relationship="RC2020Model.FK_Afiliado_Direccion" FromRole="Direccion" ToRole="Afiliado" />
+          <NavigationProperty Name="Colonia" Relationship="RC2020Model.FK_Direccion_Colonia" FromRole="Direccion" ToRole="Colonia" />
+          <NavigationProperty Name="Zona" Relationship="RC2020Model.FK_Direccion_Zona" FromRole="Direccion" ToRole="Zona" />
+          <NavigationProperty Name="Persona" Relationship="RC2020Model.FK_Persona_Direccion" FromRole="Direccion" ToRole="Persona" />
+        </EntityType>
+        <Association Name="FK_Afiliado_Direccion">
+          <End Type="RC2020Model.Direccion" Role="Direccion" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="RC2020Model.Afiliado" Role="Afiliado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Afiliado">
+              <PropertyRef Name="idDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direccion_Colonia">
+          <End Type="RC2020Model.Colonia" Role="Colonia" Multiplicity="0..1" />
+          <End Type="RC2020Model.Direccion" Role="Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colonia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="idColonia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direccion_Zona">
+          <End Type="RC2020Model.Zona" Role="Zona" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="RC2020Model.Direccion" Role="Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zona">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="idZona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Direccion">
+          <End Type="RC2020Model.Direccion" Role="Direccion" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="RC2020Model.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="idDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RC2020ModelStoreContainer" CdmEntityContainer="RC2020Entities">
-          <EntitySetMapping Name="Direccion">
-            <EntityTypeMapping TypeName="RC2020Model.Direccion">
-              <MappingFragment StoreEntitySet="Direccion">
-                <ScalarProperty Name="idZona" ColumnName="idZona" />
-                <ScalarProperty Name="idSeccion" ColumnName="idSeccion" />
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="strCalle" ColumnName="strCalle" />
-                <ScalarProperty Name="strNumeroInterior" ColumnName="strNumeroInterior" />
-                <ScalarProperty Name="strNumeroExterior" ColumnName="strNumeroExterior" />
-                <ScalarProperty Name="idColonia" ColumnName="idColonia" />
-                <ScalarProperty Name="strObservacion" ColumnName="strObservacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="RC2020Model.Persona">
               <MappingFragment StoreEntitySet="Persona">
@@ -809,6 +879,7 @@
           <EntitySetMapping Name="Colonia">
             <EntityTypeMapping TypeName="RC2020Model.Colonia">
               <MappingFragment StoreEntitySet="Colonia">
+                <ScalarProperty Name="idSeccion" ColumnName="idSeccion" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="strAsentamiento" ColumnName="strAsentamiento" />
                 <ScalarProperty Name="strTipoDeAsentamiento" ColumnName="strTipoDeAsentamiento" />
@@ -898,6 +969,48 @@
                 <ScalarProperty Name="Id_rol" ColumnName="Id_rol" />
                 <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Aliado">
+            <EntityTypeMapping TypeName="RC2020Model.Aliado">
+              <MappingFragment StoreEntitySet="Aliado">
+                <ScalarProperty Name="strDescripcion" ColumnName="strDescripcion" />
+                <ScalarProperty Name="strNombre" ColumnName="strNombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meta">
+            <EntityTypeMapping TypeName="RC2020Model.Meta">
+              <MappingFragment StoreEntitySet="Meta">
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="meta1" ColumnName="meta" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RC2020Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direccion">
+            <EntityTypeMapping TypeName="RC2020Model.Direccion">
+              <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="idZona" ColumnName="idZona" />
+                <ScalarProperty Name="strObservacion" ColumnName="strObservacion" />
+                <ScalarProperty Name="idColonia" ColumnName="idColonia" />
+                <ScalarProperty Name="strNumeroExterior" ColumnName="strNumeroExterior" />
+                <ScalarProperty Name="strNumeroInterior" ColumnName="strNumeroInterior" />
+                <ScalarProperty Name="strCalle" ColumnName="strCalle" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

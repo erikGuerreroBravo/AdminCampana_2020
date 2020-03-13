@@ -24,7 +24,9 @@ namespace AdminCampana_2020.Repository
         public string strTipoDeAsentamiento { get; set; }
         public string strAsentamiento { get; set; }
         public int id { get; set; }
+        public Nullable<int> idSeccion { get; set; }
     
+        public virtual Seccion Seccion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Direccion> Direccion { get; set; }
     }

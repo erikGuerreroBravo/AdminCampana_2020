@@ -54,8 +54,7 @@ namespace AdminCampana_2020.Business
                 return usuarioDM;
             }
             catch (Exception ex)
-            {
-                
+            {                
                 return usuarioDM;
             }
             

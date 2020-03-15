@@ -45,6 +45,7 @@
     <Compile Include="DireccionDomainModel.cs" />
     <Compile Include="EstrategiaDomainModel.cs" />
     <Compile Include="MetaDomainModel.cs" />
+    <Compile Include="PerfilDomainModel.cs" />
     <Compile Include="PersonaDomainModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolDomainModel.cs" />

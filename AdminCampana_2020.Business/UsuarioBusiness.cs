@@ -20,6 +20,48 @@ namespace AdminCampana_2020.Business
             usuarioRepository = new UsuarioRepository(unitOfWork);
         }
 
+        public bool AddUpdateUsuarios(UsuarioDomainModel usuarioDM)
+        {
+            string resultado = string.Empty;
+            if (usuarioDM != null)
+            {
+
+                Usuario usuario = usuarioRepository.SingleOrDefault(p => p.Id == usuarioDM.Id);
+
+                if (usuario != null)
+                {
+                    usuario.Nombres = usuarioDM.Nombres;
+                    usuario.Apellidos = usuarioDM.Apellidos;
+                    usuario.Email = usuarioDM.Email;
+                    usuario.Clave = usuarioDM.Clave;
+                    usuario.ProviderKey = usuarioDM.ProviderKey;
+                    usuario.ProviderName = usuarioDM.ProviderName;
+                    usuario.Perfil = new Perfil();
+                    usuario.Perfil.id = usuarioDM.perfilDomainModel.Id;
+
+                    usuarioRepository.Update(usuario);
+                    resultado = "Se actualizó correctamente";
+                }
+
+                else
+                {
+                    usuario = new Usuario();
+                    usuario.Nombres = usuarioDM.Nombres;
+                    usuario.Apellidos = usuarioDM.Apellidos;
+                    usuario.Email = usuarioDM.Email;
+                    usuario.Clave = usuarioDM.Clave;
+                    usuario.ProviderKey = usuarioDM.ProviderKey;
+                    usuario.ProviderName = usuarioDM.ProviderName;
+                    usuario.Perfil = new Perfil();
+                    usuario.Perfil.id = usuarioDM.perfilDomainModel.Id;                    
+                    usuarioRepository.Insert(usuario);
+                    resultado = "Se insertó de forma correcta";
+                }
+
+            }
+            return resultado;
+        }
+
         public UsuarioDomainModel ValidarLogin(string email, string password)
         {
             UsuarioDomainModel usuarioDM = null;

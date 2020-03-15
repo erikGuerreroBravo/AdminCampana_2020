@@ -34,6 +34,8 @@
         <AssociationConnector Association="RC2020Model.FK_Direccion_Colonia" />
         <AssociationConnector Association="RC2020Model.FK_Direccion_Zona" />
         <AssociationConnector Association="RC2020Model.FK_Persona_Direccion" />
+        <EntityTypeShape EntityType="RC2020Model.Perfil" Width="1.5" PointX="5.125" PointY="9.625" />
+        <AssociationConnector Association="RC2020Model.FK_Usuario_Perfil" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

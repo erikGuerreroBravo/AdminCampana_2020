@@ -100,7 +100,6 @@ namespace AdminCampana_2020.Controllers
             return View("Registro");
         }
 
-
         [HttpGet]
         [AllowAnonymous]
         [Authorize]

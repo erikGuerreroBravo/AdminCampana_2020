@@ -102,6 +102,10 @@
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
     <Compile Include="MetaRepository.cs" />
+    <Compile Include="Perfil.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilRepository.cs" />
     <Compile Include="Persona.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>

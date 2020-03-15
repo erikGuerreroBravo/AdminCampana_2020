@@ -77,6 +77,14 @@
           <Property Name="meta" Type="int" />
           <Property Name="idRol" Type="int" />
         </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strValor" Type="varchar" MaxLength="50" />
+          <Property Name="strDescripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Persona">
           <Key>
             <PropertyRef Name="id" />
@@ -138,6 +146,7 @@
           <Property Name="Clave" Type="varchar(max)" Nullable="false" />
           <Property Name="ProviderKey" Type="varchar" MaxLength="50" />
           <Property Name="ProviderName" Type="varchar" MaxLength="50" />
+          <Property Name="idPerfil" Type="int" />
         </EntityType>
         <EntityType Name="Usuario_Rol">
           <Key>
@@ -311,6 +320,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Usuario_Perfil">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Usuario_Rol_Rol">
           <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
           <End Role="Usuario_Rol" Type="Self.Usuario_Rol" Multiplicity="*" />
@@ -343,6 +364,7 @@
           <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estrategia" EntityType="Self.Estrategia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Meta" EntityType="Self.Meta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seccion" EntityType="Self.Seccion" Schema="dbo" store:Type="Tables" />
@@ -398,6 +420,10 @@
           <AssociationSet Name="FK_Persona_Telefono" Association="Self.FK_Persona_Telefono">
             <End Role="Telefono" EntitySet="Telefono" />
             <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Perfil" Association="Self.FK_Usuario_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Rol_Rol" Association="Self.FK_Usuario_Rol_Rol">
             <End Role="Rol" EntitySet="Rol" />
@@ -529,6 +555,11 @@
           <AssociationSet Name="FK_Persona_Direccion" Association="RC2020Model.FK_Persona_Direccion">
             <End Role="Direccion" EntitySet="Direccion" />
             <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <EntitySet Name="Perfil" EntityType="RC2020Model.Perfil" />
+          <AssociationSet Name="FK_Usuario_Perfil" Association="RC2020Model.FK_Usuario_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Colonia">
@@ -687,6 +718,8 @@
           <Property Name="ProviderKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Usuario_Rol" Relationship="RC2020Model.FK_Usuario_Rol_Usuario" FromRole="Usuario" ToRole="Usuario_Rol" />
+          <Property Name="idPerfil" Type="Int32" />
+          <NavigationProperty Name="Perfil" Relationship="RC2020Model.FK_Usuario_Perfil" FromRole="Usuario" ToRole="Perfil" />
         </EntityType>
         <EntityType Name="Usuario_Rol">
           <Key>
@@ -843,6 +876,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strValor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="RC2020Model.FK_Usuario_Perfil" FromRole="Perfil" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_Usuario_Perfil">
+          <End Type="RC2020Model.Perfil" Role="Perfil" Multiplicity="0..1" />
+          <End Type="RC2020Model.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -953,6 +1007,7 @@
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="RC2020Model.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
                 <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
@@ -1010,6 +1065,15 @@
                 <ScalarProperty Name="strNumeroExterior" ColumnName="strNumeroExterior" />
                 <ScalarProperty Name="strNumeroInterior" ColumnName="strNumeroInterior" />
                 <ScalarProperty Name="strCalle" ColumnName="strCalle" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfil">
+            <EntityTypeMapping TypeName="RC2020Model.Perfil">
+              <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="strDescripcion" ColumnName="strDescripcion" />
+                <ScalarProperty Name="strValor" ColumnName="strValor" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

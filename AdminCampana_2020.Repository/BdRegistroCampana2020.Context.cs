@@ -40,5 +40,6 @@ namespace AdminCampana_2020.Repository
         public virtual DbSet<Meta> Meta { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Direccion> Direccion { get; set; }
+        public virtual DbSet<Perfil> Perfil { get; set; }
     }
 }

@@ -16,5 +16,6 @@ namespace AdminCampana_2020.Domain
         public string ProviderName { get; set; }
         public string ProviderKey { get; set; }
         public List<UsuarioRolDomainModel> UsuarioRolesDM { get; set; }
+        public PerfilDomainModel perfilDomainModel { get; set; }
     }
 }

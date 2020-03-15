@@ -10,6 +10,6 @@ namespace AdminCampana_2020.Domain
     {
         public int Id { get; set; }
         public string meta { get; set; }
-
+        public RolDomainModel Rol { get; set; }
     }
 }

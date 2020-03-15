@@ -45,6 +45,7 @@
     <Compile Include="EstrategiaBusiness.cs" />
     <Compile Include="Interface\IColoniaBusiness.cs" />
     <Compile Include="Interface\IEstrategiaBusiness.cs" />
+    <Compile Include="Interface\IMetaBusiness.cs" />
     <Compile Include="Interface\IPersonaBusiness.cs" />
     <Compile Include="Interface\IRolBusiness.cs" />
     <Compile Include="Interface\ISeccionBusiness.cs" />

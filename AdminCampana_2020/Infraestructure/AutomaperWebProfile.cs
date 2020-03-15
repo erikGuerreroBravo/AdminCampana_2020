@@ -45,6 +45,9 @@ namespace AdminCampana_2020.Infraestructure
             //UsuarioRoles
             CreateMap<UsuarioRolVM, UsuarioRolDomainModel>();
             CreateMap<UsuarioRolDomainModel, UsuarioRolVM>();
+            //MEtas
+            CreateMap<MetaVM,MetaDomainModel>();
+            CreateMap<MetaDomainModel,MetaVM>();
 
         }
 

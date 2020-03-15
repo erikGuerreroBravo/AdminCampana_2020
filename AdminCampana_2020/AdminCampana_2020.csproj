@@ -444,11 +444,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Error\NoScript.cshtml" />
     <Content Include="Views\Persona\Configuracion.cshtml" />
-    <Content Include="Views\Metas\Create.cshtml" />
-    <Content Include="Views\Metas\Delete.cshtml" />
-    <Content Include="Views\Metas\Details.cshtml" />
-    <Content Include="Views\Metas\Edit.cshtml" />
-    <Content Include="Views\Metas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -462,7 +457,7 @@
     <Compile Include="Controllers\ConfiguracionController.cs" />
     <Compile Include="Controllers\GraficasController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\MetasController.cs" />
+    <Compile Include="Controllers\MetaController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Helpers\ChallengeResult.cs" />
     <Compile Include="Infraestructure\AutomaperWebProfile.cs" />
@@ -474,6 +469,7 @@
     <Compile Include="ViewModels\DireccionVM.cs" />
     <Compile Include="ViewModels\EstrategiaVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
+    <Compile Include="ViewModels\MetaVM.cs" />
     <Compile Include="ViewModels\PersonaVM.cs" />
     <Compile Include="ViewModels\RolVM.cs" />
     <Compile Include="ViewModels\SeccionVM.cs" />
@@ -611,6 +607,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Configuracion\" />
+    <Folder Include="Views\Meta\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdminCampana_2020.Business\AdminCampana_2020.Business.csproj">

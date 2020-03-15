@@ -47,7 +47,6 @@ namespace AdminCampana_2020.Business
                     persona.Direccion.strNumeroInterior = personaDM.DireccionDomainModel.StrNumeroInterior;
                     persona.Direccion.strNumeroExterior = personaDM.DireccionDomainModel.StrNumeroExterior;
                     persona.Direccion.idColonia = personaDM.DireccionDomainModel.ColoniaDomainModel.Id;
-                    persona.Direccion.idSeccion = personaDM.DireccionDomainModel.SeccionDomainModel.Id;
                     persona.Direccion.idZona = personaDM.DireccionDomainModel.ZonaDomainModel.Id;
                     persona.Estrategia = new Estrategia();
                     persona.Estrategia.id = personaDM.EstrategiaDomainModel.Id;
@@ -71,7 +70,6 @@ namespace AdminCampana_2020.Business
                     persona.Direccion.strNumeroInterior = personaDM.DireccionDomainModel.StrNumeroInterior;
                     persona.Direccion.strNumeroExterior = personaDM.DireccionDomainModel.StrNumeroExterior;
                     persona.Direccion.idColonia = personaDM.DireccionDomainModel.ColoniaDomainModel.Id;
-                    persona.Direccion.idSeccion = personaDM.DireccionDomainModel.SeccionDomainModel.Id;
                     persona.Direccion.idZona = personaDM.DireccionDomainModel.ZonaDomainModel.Id;
 
                     persona.Estrategia = new Estrategia();

@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\USER01\Documents\Visual Studio 2017\Projects\AdminCampana_2020\AdminCampana_2020.Repository\BdRegistroCampana2020.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'C:\RepoGit\Campania2020\AdminCampana_2020.Repository\BdRegistroCampana2020.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

@@ -14,29 +14,42 @@
         </form>
         @* END Search *@
         @* BEGIN Menu *@
-        <ul class="sidebar-menu" data-widget="tree">
-            @*<li class="header">HEADER</li>
-            <li class="@Url.IsLinkActive("Create", "Graficas")">
-                <a href="@Url.Action("Create", "Graficas")"><i class="fa fa-link"></i> <span>Graficación</span></a>
-            </li>
-            <li class="@Url.IsLinkActive("AnotherLink", "Home")">
-                <a href="@Url.Action("AnotherLink", "Home")"><i class="fa fa-link"></i> <span>Another Link</span></a>
-            </li>
-            <li class="@Url.IsLinkActive("Registro", "Persona")">
-                <a href="@Url.Action("Registro", "Persona")"><i class="fa fa-link"></i> <span>Registro</span></a>
-            </li>*@
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-link"></i> <span>Graficación</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Create", "Graficas")">Graficas Generales</a></li>
-                </ul>
-            </li>
-        </ul>
+    <ul class="sidebar-menu" data-widget="tree">
+        @*<li class="header">HEADER</li>
+        <li class="@Url.IsLinkActive("Create", "Graficas")">
+            <a href="@Url.Action("Create", "Graficas")"><i class="fa fa-link"></i> <span>Graficación</span></a>
+        </li>
+        <li class="@Url.IsLinkActive("AnotherLink", "Home")">
+            <a href="@Url.Action("AnotherLink", "Home")"><i class="fa fa-link"></i> <span>Another Link</span></a>
+        </li>
+        <li class="@Url.IsLinkActive("Registro", "Persona")">
+            <a href="@Url.Action("Registro", "Persona")"><i class="fa fa-link"></i> <span>Registro</span></a>
+        </li>*@
+        <li class="treeview">
+            <a href="#">
+                <i class="glyphicon glyphicon-user"></i> <span>Personal</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="@Url.Action("Registro", "Persona")">Registro</a></li>
+                <li><a href="@Url.Action("Registros", "Persona")">Administración</a></li>
+                <li><a href="@Url.Action("Create", "Usuario")">Agregar Coordinador</a></li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fas fa-chart-line"></i> <span>Graficación</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="@Url.Action("Create", "Graficas")">Graficas Generales</a></li>
+            </ul>
+        </li>
+    </ul>
         @* END Menu *@
     </section>
 </aside>

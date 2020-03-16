@@ -30,10 +30,10 @@ namespace AdminCampana_2020.Repository
         public Nullable<int> idDireccion { get; set; }
         public Nullable<int> idTelefono { get; set; }
     
-        public virtual Direccion Direccion { get; set; }
         public virtual Persona Persona { get; set; }
         public virtual Telefono Telefono { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Auditoria> Auditoria { get; set; }
+        public virtual Direccion Direccion { get; set; }
     }
 }

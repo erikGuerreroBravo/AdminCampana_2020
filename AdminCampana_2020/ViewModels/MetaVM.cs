@@ -5,13 +5,10 @@ using System.Web;
 
 namespace AdminCampana_2020.ViewModels
 {
-    public class UsuarioRolVM
+    public class MetaVM
     {
         public int Id { get; set; }
-        public int IdUsuario { get; set; }
-        public int IdRol { get; set; }
-
-        public UsuarioVM Usuario { get; set; }
+        public int meta { get; set; }
         public RolVM Rol { get; set; }
     }
 }

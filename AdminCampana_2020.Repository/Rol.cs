@@ -18,6 +18,7 @@ namespace AdminCampana_2020.Repository
         public Rol()
         {
             this.Usuario_Rol = new HashSet<Usuario_Rol>();
+            this.Meta = new HashSet<Meta>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace AdminCampana_2020.Repository
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuario_Rol> Usuario_Rol { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Meta> Meta { get; set; }
     }
 }

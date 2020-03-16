@@ -5,22 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4ab9e88926544afabd1302caa0aa2e41" Name="Diagram1" ZoomLevel="66">
-        <EntityTypeShape EntityType="RC2020Model.Direccion" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RC2020Model.Persona" Width="2.125" PointX="6.375" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RC2020Model.Telefono" Width="1.5" PointX="2.125" PointY="5.5" IsExpanded="true" />
-        <AssociationConnector Association="RC2020Model.FK_Persona_Direccion" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RC2020Model.Telefono" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
         <AssociationConnector Association="RC2020Model.FK_Persona_Telefono" ManuallyRouted="false" />
         <EntityTypeShape EntityType="RC2020Model.Colonia" Width="2" PointX="0.5" PointY="1.375" />
-        <AssociationConnector Association="RC2020Model.FK_Direccion_Colonia1" />
         <EntityTypeShape EntityType="RC2020Model.Estrategia" Width="1.5" PointX="4.875" PointY="5.375" />
-        <EntityTypeShape EntityType="RC2020Model.Seccion" Width="1.5" PointX="0.5" PointY="3.625" />
+        <EntityTypeShape EntityType="RC2020Model.Seccion" Width="1.5" PointX="0.5" PointY="4.75" />
         <EntityTypeShape EntityType="RC2020Model.Zona" Width="1.5" PointX="8.625" PointY="3.125" />
-        <AssociationConnector Association="RC2020Model.FK_Direccion_Seccion" />
-        <AssociationConnector Association="RC2020Model.FK_Direccion_Zona" />
         <AssociationConnector Association="RC2020Model.FK_Persona_Estrategia" />
         <EntityTypeShape EntityType="RC2020Model.Afiliado" Width="1.5" PointX="11.25" PointY="2" />
         <EntityTypeShape EntityType="RC2020Model.Auditoria" Width="1.5" PointX="13.5" PointY="1.75" />
-        <AssociationConnector Association="RC2020Model.FK_Afiliado_Direccion" />
         <AssociationConnector Association="RC2020Model.FK_Afiliado_Persona" />
         <AssociationConnector Association="RC2020Model.FK_Afiliado_Telefono" />
         <AssociationConnector Association="RC2020Model.FK_Auditoria_Afiliado" />
@@ -30,6 +24,18 @@
         <EntityTypeShape EntityType="RC2020Model.Usuario_Rol" Width="1.5" PointX="9.625" PointY="7.25" />
         <AssociationConnector Association="RC2020Model.FK_Usuario_Rol_Rol" />
         <AssociationConnector Association="RC2020Model.FK_Usuario_Rol_Usuario" />
+        <EntityTypeShape EntityType="RC2020Model.Aliado" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="RC2020Model.Meta" Width="1.5" PointX="10" PointY="10.375" />
+        <EntityTypeShape EntityType="RC2020Model.sysdiagrams" Width="1.5" PointX="2.75" PointY="8.75" />
+        <AssociationConnector Association="RC2020Model.FK_Meta_Rol" />
+        <AssociationConnector Association="RC2020Model.FK_Colonia_Seccion" />
+        <EntityTypeShape EntityType="RC2020Model.Direccion" Width="1.5" PointX="3.25" PointY="1.25" />
+        <AssociationConnector Association="RC2020Model.FK_Afiliado_Direccion" />
+        <AssociationConnector Association="RC2020Model.FK_Direccion_Colonia" />
+        <AssociationConnector Association="RC2020Model.FK_Direccion_Zona" />
+        <AssociationConnector Association="RC2020Model.FK_Persona_Direccion" />
+        <EntityTypeShape EntityType="RC2020Model.Perfil" Width="1.5" PointX="5.125" PointY="9.625" />
+        <AssociationConnector Association="RC2020Model.FK_Usuario_Perfil" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

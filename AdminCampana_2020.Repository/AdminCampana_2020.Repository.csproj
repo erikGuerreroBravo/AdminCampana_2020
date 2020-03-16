@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdminCampana_2020.Repository</RootNamespace>
     <AssemblyName>AdminCampana_2020.Repository</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,6 +62,9 @@
     <Compile Include="Afiliado.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
+    <Compile Include="Aliado.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
     <Compile Include="Auditoria.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
@@ -95,6 +99,14 @@
     <Compile Include="Infraestructure\Contract\IBaseRepository.cs" />
     <Compile Include="Infraestructure\Contract\IUnitOfWork.cs" />
     <Compile Include="Infraestructure\UnitOfWork.cs" />
+    <Compile Include="Meta.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MetaRepository.cs" />
+    <Compile Include="Perfil.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilRepository.cs" />
     <Compile Include="Persona.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
@@ -108,6 +120,9 @@
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
     <Compile Include="SeccionRepository.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
+    </Compile>
     <Compile Include="Telefono.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
@@ -116,7 +131,7 @@
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
     <Compile Include="UsuarioRepository.cs" />
-    <Compile Include="UsuarioRol.cs" />
+    <Compile Include="UsuarioRolRepository.cs" />
     <Compile Include="Usuario_Rol.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>

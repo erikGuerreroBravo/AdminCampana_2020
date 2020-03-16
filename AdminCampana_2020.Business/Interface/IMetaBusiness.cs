@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace AdminCampana_2020.Business.Interface
 {
-    public interface IUsuarioBusiness
+    public interface IMetaBusiness
     {
-        UsuarioDomainModel ValidarLogin(string email, string password);
-        bool AddUpdateUsuarios(UsuarioRolDomainModel usuarioDM);
+        List<MetaDomainModel> GetAllMetas();
+        bool UpdateMeta(MetaDomainModel _meta);
     }
 }

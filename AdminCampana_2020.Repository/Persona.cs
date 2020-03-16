@@ -33,12 +33,12 @@ namespace AdminCampana_2020.Repository
         public string strClaveElector { get; set; }
         public string strCurp { get; set; }
     
-        public virtual Direccion Direccion { get; set; }
         public virtual Telefono Telefono { get; set; }
         public virtual Estrategia Estrategia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Afiliado> Afiliado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Auditoria> Auditoria { get; set; }
+        public virtual Direccion Direccion { get; set; }
     }
 }

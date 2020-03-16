@@ -29,6 +29,8 @@ namespace AdminCampana_2020
             container.RegisterType<IEstrategiaBusiness, EstrategiaBusiness>();
 
             container.RegisterType<IUnitOfWork, UnitOfWork>();
+            container.RegisterType<IMetaBusiness, MetaBusiness>();
+            container.RegisterType<IPerfilBusiness, PerfiBusiness>();
             //DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

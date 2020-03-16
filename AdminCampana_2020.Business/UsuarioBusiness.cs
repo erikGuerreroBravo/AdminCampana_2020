@@ -14,48 +14,50 @@ namespace AdminCampana_2020.Business
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly UsuarioRepository usuarioRepository;
+        private readonly UsuarioRolRepository usuarioRolRepository;
         public UsuarioBusiness(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;
             usuarioRepository = new UsuarioRepository(unitOfWork);
+            usuarioRolRepository = new UsuarioRolRepository(unitOfWork);
         }
 
-        public bool AddUpdateUsuarios(UsuarioDomainModel usuarioDM)
+        public bool AddUpdateUsuarios(UsuarioRolDomainModel usuarioDM)
         {
-            string resultado = string.Empty;
+            bool resultado = false;
             if (usuarioDM != null)
             {
 
-                Usuario usuario = usuarioRepository.SingleOrDefault(p => p.Id == usuarioDM.Id);
+                Usuario_Rol usuario = usuarioRolRepository.SingleOrDefault(p => p.Id == usuarioDM.Id);
 
-                if (usuario != null)
+                if (usuarioDM.Id > 0)
                 {
-                    usuario.Nombres = usuarioDM.Nombres;
-                    usuario.Apellidos = usuarioDM.Apellidos;
-                    usuario.Email = usuarioDM.Email;
-                    usuario.Clave = usuarioDM.Clave;
-                    usuario.ProviderKey = usuarioDM.ProviderKey;
-                    usuario.ProviderName = usuarioDM.ProviderName;
-                    usuario.Perfil = new Perfil();
-                    usuario.Perfil.id = usuarioDM.perfilDomainModel.Id;
-
-                    usuarioRepository.Update(usuario);
-                    resultado = "Se actualizó correctamente";
+                    usuario.Usuario.Nombres = usuarioDM.Usuario.Nombres;
+                    usuario.Usuario.Apellidos = usuarioDM.Usuario.Apellidos;
+                    usuario.Usuario.Email = usuarioDM.Usuario.Email;
+                    usuario.Usuario.Clave = usuarioDM.Usuario.Clave;
+                    usuario.Usuario.ProviderKey = usuarioDM.Usuario.ProviderKey;
+                    usuario.Usuario.ProviderName = usuarioDM.Usuario.ProviderName;
+                    usuarioRolRepository.Update(usuario);
+                    resultado = true;
                 }
 
                 else
                 {
-                    usuario = new Usuario();
-                    usuario.Nombres = usuarioDM.Nombres;
-                    usuario.Apellidos = usuarioDM.Apellidos;
-                    usuario.Email = usuarioDM.Email;
-                    usuario.Clave = usuarioDM.Clave;
-                    usuario.ProviderKey = usuarioDM.ProviderKey;
-                    usuario.ProviderName = usuarioDM.ProviderName;
-                    usuario.Perfil = new Perfil();
-                    usuario.Perfil.id = usuarioDM.perfilDomainModel.Id;                    
-                    usuarioRepository.Insert(usuario);
-                    resultado = "Se insertó de forma correcta";
+                    usuario = new Usuario_Rol();
+                    usuario.Usuario = new Usuario
+                    {
+                        Nombres = usuarioDM.Usuario.Nombres,
+                        Apellidos = usuarioDM.Usuario.Apellidos,
+                        Email = usuarioDM.Usuario.Email,
+                        Clave = usuarioDM.Usuario.Clave,
+                        ProviderKey = usuarioDM.Usuario.ProviderKey,
+                        ProviderName = usuarioDM.Usuario.ProviderName,
+                        idPerfil = usuarioDM.Usuario.idPerfil
+                    };
+                    usuario.Id_rol = usuarioDM.IdRol;
+                    usuarioRolRepository.Insert(usuario);
+                    resultado = true;
                 }
 
             }
@@ -91,7 +93,7 @@ namespace AdminCampana_2020.Business
                         usuarioRolDM.Rol = rolDM;
                         rolesDM.Add(usuarioRolDM);
                     }
-                    usuarioDM.UsuarioRolesDM = rolesDM;
+                    usuarioDM.UsuarioRoles = rolesDM;
                 }
                 return usuarioDM;
             }

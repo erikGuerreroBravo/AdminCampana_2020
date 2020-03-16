@@ -11,7 +11,7 @@ namespace AdminCampana_2020.ViewModels
         public int IdUsuario { get; set; }
         public int IdRol { get; set; }
 
-        public UsuarioVM UsuarioVM { get; set; }
-        public RolVM RolVM { get; set; }
+        public UsuarioVM Usuario { get; set; }
+        public RolVM Rol { get; set; }
     }
 }

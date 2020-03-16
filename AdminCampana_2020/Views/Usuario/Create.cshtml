@@ -1,0 +1,114 @@
+﻿@model AdminCampana_2020.ViewModels.UsuarioRolVM
+    @using AdminCampana_2020.Business;
+@using AdminCampana_2020.Repository.Infraestructure.Contract;
+@using AdminCampana_2020.Repository.Infraestructure;
+
+@{
+    //ViewBag.Title = "Registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@using (Html.BeginForm("Create", "Usuario", FormMethod.Post))
+{
+    
+    @Html.AntiForgeryToken()
+    <noscript>
+        <meta http-equiv="refresh" content="0;URL=@Url.Action("NoScript", "Error")" />
+    </noscript>
+    <div class="bs-container" style="min-height:960px;">
+        <section class="content-header">
+            <h1>
+                Coordinadores
+                <small>(Agregar)</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"> <i class="fa fa-dashboard"></i> Inicio </a></li>
+                <li> <a href="#">Coordinador</a></li>
+                <li class="active"> Datos Personales </li>
+            </ol>
+        </section>
+        <br />
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h5 class="box-title">
+                            <label class="text-success emailtitleletter">
+                                <i class="text-success fa fa-graduation-cap"></i>
+                                Octavio Vargas Soto
+
+                            </label>&nbsp;
+
+                        </h5>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-2 col-sm-12 cl-xs-12">
+                                    <div class="form-group">
+                                        <label>Nombre(s):&nbsp;&nbsp;</label>
+                                        @Html.TextBoxFor(model => model.Usuario.Nombres, new { @class = "form-control input-sm", placeholder = "Nombre(s)", required = "", id = "txtNombre" })
+                                        @Html.ValidationMessageFor(model => model.Usuario.Nombres, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12 cl-xs-12">
+                                    <div class="form-group">
+                                        <label>Apellidos:&nbsp;&nbsp;</label>
+                                        @Html.TextBoxFor(model => model.Usuario.Apellidos, new { @class = "form-control input-sm", placeholder = "Apellidos", required = "", id = "txtApellidos" })
+                                        @Html.ValidationMessageFor(model => model.Usuario.Apellidos, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12 cl-xs-12">
+                                    <div class="form-group">
+                                        <label>Email:&nbsp;&nbsp;</label>
+                                        @Html.TextBoxFor(model => model.Usuario.Email, new { @class = "form-control input-sm", placeholder = "Correo Electronico", required = "", id = "txtEmail" })
+                                        @Html.ValidationMessageFor(model => model.Usuario.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12 cl-xs-12">
+                                    <div class="form-group">
+                                        <label>Contraseña:&nbsp;&nbsp;</label>
+                                        @Html.TextBoxFor(model => model.Usuario.Clave, new { type="password",@class = "form-control input-sm", placeholder = "********", required = "", id = "txtContraseña" })
+                                        @Html.ValidationMessageFor(model => model.Usuario.Clave, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12 cl-xs-12">
+                                    <div class="form-group">
+                                        <label>Area:&nbsp;&nbsp;</label>
+                                        @Html.DropDownList("IdRol", null, new { @class = "form-control input-sm", placeholder = "", required = "", id = "idPerfil" })
+                                        @Html.ValidationMessageFor(model => model.IdRol, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12 cl-xs-12">
+                                    <div class="form-group">
+                                        <br />
+                                        <input type="submit" value="Guardar" class="btn btn-sm btn-success" id="btnEnviar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+}
+
+<link href="~/Content/toastr.css" rel="stylesheet" />
+
+@section ViewSpecificJavascript{
+    <script src="~/Scripts/toastr.js"></script>
+    <script src="~/Scripts/persona/message-confirmation.js?v=1"></script>
+    <script src="~/Content/js/validaciones.js?v=12"></script>
+}
+

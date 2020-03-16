@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace AdminCampana_2020.Repository
 {
-    public class UsuarioRol : BaseRepository<Usuario_Rol>
+    public class UsuarioRolRepository : BaseRepository<Usuario_Rol>
     {
-        public UsuarioRol(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public UsuarioRolRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
 
         }

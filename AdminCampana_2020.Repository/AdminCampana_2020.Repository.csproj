@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdminCampana_2020.Repository</RootNamespace>
     <AssemblyName>AdminCampana_2020.Repository</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -130,7 +131,7 @@
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
     <Compile Include="UsuarioRepository.cs" />
-    <Compile Include="UsuarioRol.cs" />
+    <Compile Include="UsuarioRolRepository.cs" />
     <Compile Include="Usuario_Rol.cs">
       <DependentUpon>BdRegistroCampana2020.tt</DependentUpon>
     </Compile>
